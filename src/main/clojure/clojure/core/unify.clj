@@ -1,4 +1,4 @@
-(ns core.clojure.unify
+(ns clojure.core.unify
   (:require [clojure [zip :as zip]])
   (:use [clojure.contrib.core :only [seqable?]]
         [clojure.walk :as walk :only [prewalk]]))
