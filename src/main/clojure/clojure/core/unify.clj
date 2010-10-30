@@ -60,7 +60,7 @@
   ([variable? x y] (garner-unifiers variable? x y {}))
   ([variable? x y binds]
      (cond
-       (not binds)               (throw (IllegalStateException. (str "Cycle found in the path " x)))
+       (not binds)               nil
        (= x y)                   binds
        (variable? x)             (unify-variable variable? x y binds)
        (variable? y)             (unify-variable variable? y x binds)
