@@ -27,7 +27,6 @@
   </scm>
   <build>
     <sourceDirectory>src/main/clojure</sourceDirectory>
-    <testSourceDirectory>src/test/clojure</testSourceDirectory>
     <plugins>
       <plugin>
         <groupId>com.theoryinpractise</groupId>
