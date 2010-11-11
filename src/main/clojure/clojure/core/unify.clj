@@ -10,17 +10,30 @@
       :author "Michael Fogus"}
   clojure.core.unify
   (:require [clojure [zip :as zip]])
-  (:use [clojure.contrib.core :only [seqable?]]
-        [clojure.walk :as walk :only [prewalk]]))
+  (:use     [clojure.walk :as walk :only [prewalk]]))
 
 (def *variablep* #(and (symbol? %) (re-matches #"^\?.*" (name %))))
+
+(defn- composite?
+  "Taken from the old `contrib.core/seqable?`. Since the meaning of 'seqable' is
+   questionable, I will work on phasing it out and using a more meaningful
+   predicate.  At the moment, the only meaning of `composite?` is:
+   Returns true if `(seq x)` will succeed, false otherwise." 
+  [x]
+  (or (seq? x)
+      (instance? clojure.lang.Seqable x)
+      (nil? x)
+      (instance? Iterable x)
+      (-> x .getClass .isArray)
+      (string? x)
+      (instance? java.util.Map x)))
 
 (declare garner-unifiers)
 
 (defn- occurs?
   "Does v occur anywhere inside expr?"
   [variable? v expr binds]
-  (loop [z (zip/zipper seqable? seq #(do % %2) [expr])]
+  (loop [z (zip/zipper composite? seq #(do % %2) [expr])]
     (let [current (zip/node z)]
       (cond 
         (zip/end? z) false
@@ -64,7 +77,7 @@
        (= x y)                   binds
        (variable? x)             (unify-variable variable? x y binds)
        (variable? y)             (unify-variable variable? y x binds)
-       (every? seqable? [x y])   (garner-unifiers variable?
+       (every? composite? [x y])   (garner-unifiers variable?
                                                   (rest x) 
                                                   (rest y)
                                                   (garner-unifiers variable?
