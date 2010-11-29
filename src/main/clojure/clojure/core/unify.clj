@@ -77,7 +77,7 @@
        (= x y)                   binds
        (variable? x)             (unify-variable variable? x y binds)
        (variable? y)             (unify-variable variable? y x binds)
-       (every? composite? [x y])   (garner-unifiers variable?
+       (every? composite? [x y]) (garner-unifiers variable?
                                                   (rest x) 
                                                   (rest y)
                                                   (garner-unifiers variable?
