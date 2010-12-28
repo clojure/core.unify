@@ -44,25 +44,37 @@
         (zip/end? z) false
         :else (recur (zip/next z))))))
 
-(defn- unify-variable
-  "Unify the variable v with expr.  Uses the bindings supplied and possibly returns an extended bindings map."
-  [variable? v expr binds]
-  (if-let [vb (binds v)] 
-    (garner-unifiers variable? vb expr binds)
-    (if-let [vexpr (and (variable? expr) (binds expr))]
-      (garner-unifiers variable? v vexpr binds)
-      (if (occurs? variable? v expr binds)
-        (throw (IllegalStateException. (str "Cycle found in the path " expr)))
-        (assoc binds v expr)))))
 
-(defn- unify-variable-
-  "Unify the variable v with expr.  Uses the bindings supplied and possibly returns an extended bindings map."
-  [variable? v expr binds]
-  (if-let [vb (binds v)] 
-    (garner-unifiers variable? vb expr binds)
-    (if-let [vexpr (and (variable? expr) (binds expr))]
-      (garner-unifiers variable? v vexpr binds)
-      (assoc binds v expr))))
+(defn- determine-occursness [want-occurs? variable? v expr binds]
+  (if want-occurs?
+    `(if (occurs? ~variable? ~v ~expr ~binds)
+       (throw (IllegalStateException. (str "Cycle found in the path " ~expr)))
+       (assoc ~binds ~v ~expr))
+    `(assoc ~binds ~v ~expr)))
+
+(defmacro create-var-unification-fn
+  [want-occurs?]
+  (let [varp  'varp ;;(gensym)
+        v     'v ;;(gensym)
+        expr  'expr ;;(gensym)
+        binds 'binds ;;(gensym)
+        ]
+    `(fn var-unify
+       [~varp ~v ~expr ~binds]
+       (if-let [vb# (~binds ~v)] 
+         (garner-unifiers ~varp vb# ~expr ~binds)
+         (if-let [vexpr# (and (~varp ~expr) (~binds ~expr))]
+           (garner-unifiers ~varp ~v vexpr# ~binds)
+           ~(determine-occursness want-occurs? varp v expr binds))))))
+
+
+(def ^{:doc "Unify the variable v with expr.  Uses the bindings supplied and possibly returns an extended bindings map."
+       :private true}
+  unify-variable (create-var-unification-fn true))
+
+(def ^{:doc "Unify the variable v with expr.  Uses the bindings supplied and possibly returns an extended bindings map."
+       :private true}
+  unify-variable- (create-var-unification-fn false))
 
 (defn- garner-unifiers
   "Attempt to unify x and y with the given bindings (if any). Potentially returns a map of the 
@@ -71,20 +83,21 @@
    sub-expressions clash."
   ([x y]           (garner-unifiers *variablep* x y))
   ([variable? x y] (garner-unifiers variable? x y {}))
-  ([variable? x y binds]
+  ([variable? x y binds] (garner-unifiers unify-variable variable? x y binds))
+  ([uv-fn variable? x y binds]
      (cond
-       (not binds)               nil
-       (= x y)                   binds
-       (variable? x)             (unify-variable variable? x y binds)
-       (variable? y)             (unify-variable variable? y x binds)
-       (every? composite? [x y]) (garner-unifiers variable?
-                                                  (rest x) 
-                                                  (rest y)
-                                                  (garner-unifiers variable?
-                                                                   (first x)
-                                                                   (first y) 
-                                                                   binds))
-       :else (throw (IllegalArgumentException. (str "Clash found in " x))))))
+      (not binds)               nil
+      (= x y)                   binds
+      (variable? x)             (uv-fn variable? x y binds)
+      (variable? y)             (uv-fn variable? y x binds)
+      (every? composite? [x y]) (garner-unifiers variable?
+                                                 (rest x) 
+                                                 (rest y)
+                                                 (garner-unifiers variable?
+                                                                  (first x)
+                                                                  (first y) 
+                                                                  binds))
+      :else (throw (IllegalArgumentException. (str "Clash found in " x))))))
 
 (defn- subst-bindings
   "Flattens recursive bindings in the given map."
@@ -124,7 +137,7 @@
    return a bindings map for two expressions.  This function uses an 'occurs check'
    methodology for detecting cycles."
   [variable-fn]
-  (partial garner-unifiers variable-fn))
+  (partial garner-unifiers unify-variable variable-fn))
 
 (defn make-occurs-subst-fn
   "Given a function to recognize unification variables, returns a function that
@@ -150,22 +163,23 @@
   "Given a function to recognize unification variables, returns a function to
    return a bindings map for two expressions."
   [variable-fn]
-  (binding [unify-variable unify-variable-] 
-    (partial (bound-fn [& args] (apply garner-unifiers args)) variable-fn)))
+  (partial garner-unifiers unify-variable- variable-fn))
 
 (defn make-subst-fn
   "Given a function to recognize unification variables, returns a function that
    will attempt to substitute unification bindings between two expressions."
   [variable-fn]
-  (binding [unify-variable unify-variable-]
-    (partial (bound-fn [& args] (apply try-subst args)) variable-fn)))
+  (partial try-subst variable-fn))
 
 (defn make-unifier-fn
   "Given a function to recognize unification variables, returns a function to
    perform the unification of two expressions."
   [variable-fn]
-  (binding [unify-variable unify-variable-]
-    (partial (bound-fn [& args] (apply unifier* args)) variable-fn)))
+  (fn [x y]
+    (unifier* variable-fn
+              x
+              y
+              (garner-unifiers unify-variable- variable-fn x y {}))))
 
 (def ^{:doc (:doc (meta #'garner-unifiers))} unify-   (make-unify-fn *variablep*))
 (def ^{:doc (:doc (meta #'try-subst))}       subst-   (make-subst-fn *variablep*))
