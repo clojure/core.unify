@@ -79,7 +79,7 @@
 (defn- garner-unifiers
   "Attempt to unify x and y with the given bindings (if any). Potentially returns a map of the 
    unifiers (bindings) found.  Will throw an `IllegalStateException` if the expressions
-   contain a cyclycle relationship.  Will also throw an `IllegalArgumentException` if the
+   contain a cycle relationship.  Will also throw an `IllegalArgumentException` if the
    sub-expressions clash."
   ([x y]           (garner-unifiers *variablep* x y))
   ([variable? x y] (garner-unifiers variable? x y {}))
@@ -130,6 +130,10 @@
           (subst-bindings variable?)
           (try-subst variable? y))))   ;; y is arbitrary
 
+;;
+;; PUBLIC API
+;; 
+
 ;; OCCURS
 
 (defn make-occurs-unify-fn
@@ -153,9 +157,21 @@
   [variable-fn]
   (partial unifier* variable-fn))
 
-(def ^{:doc (:doc (meta #'garner-unifiers))} unify   (make-occurs-unify-fn *variablep*))
-(def ^{:doc (:doc (meta #'try-subst))}       subst   (make-occurs-subst-fn *variablep*))
-(def ^{:doc (:doc (meta #'unifier))}         unifier (make-occurs-unifier-fn *variablep*))
+
+(def ^{:doc      (str (:doc (meta #'garner-unifiers))
+                      "  Note: This function is implemented with an occurs-check.")
+       :arglists '([expression1 expression2])}
+  unify   (make-occurs-unify-fn *variablep*))
+
+(def ^{:doc      (:doc (meta #'try-subst))
+       :arglists '([expression bindings])}
+  subst   (make-occurs-subst-fn *variablep*))
+
+(def ^{:doc      (str (:doc (meta #'unifier*))
+                      "  Note: This function is implemented with an occurs-check.")
+       :arglists '([expression1 expression2])}
+  unifier (make-occurs-unifier-fn *variablep*))
+
 
 ;; NO OCCURS
 
@@ -163,7 +179,7 @@
   "Given a function to recognize unification variables, returns a function to
    return a bindings map for two expressions."
   [variable-fn]
-  (partial garner-unifiers unify-variable- variable-fn))
+  #(garner-unifiers unify-variable- variable-fn % %2 {}))
 
 (defn make-subst-fn
   "Given a function to recognize unification variables, returns a function that
@@ -181,6 +197,14 @@
               y
               (garner-unifiers unify-variable- variable-fn x y {}))))
 
-(def ^{:doc (:doc (meta #'garner-unifiers))} unify-   (make-unify-fn *variablep*))
-(def ^{:doc (:doc (meta #'try-subst))}       subst-   (make-subst-fn *variablep*))
-(def ^{:doc (:doc (meta #'unifier))}         unifier- (make-unifier-fn *variablep*))
+
+(def ^{:doc      (str (:doc (meta #'garner-unifiers))
+                      "  Note: This function is implemented **without** an occurs-check.")
+       :arglists '([expression1 expression2])}
+  unify-   (make-unify-fn *variablep*))
+
+
+(def ^{:doc      (str (:doc (meta #'unifier*))
+                      "  Note: This function is implemented **without** an occurs-check.")
+       :arglists '([expression1 expression2])}
+  unifier- (make-unifier-fn *variablep*))
