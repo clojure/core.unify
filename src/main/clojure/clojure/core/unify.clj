@@ -12,7 +12,10 @@
   (:require [clojure [zip :as zip]])
   (:use     [clojure.walk :as walk :only [prewalk]]))
 
-(def *variablep* #(and (symbol? %) (re-matches #"^\?.*" (name %))))
+(defn ignore-variable? [sym] (= '_ sym))
+
+(def *variablep* #(or (ignore-variable? %)
+                      (and (symbol? %) (re-matches #"^\?.*" (name %)))))
 
 (defn- composite?
   "Taken from the old `contrib.core/seqable?`. Since the meaning of 'seqable' is
@@ -45,12 +48,18 @@
         :else (recur (zip/next z))))))
 
 
+(defn- bind-phase
+  [binds variable expr]
+  (if (ignore-variable? variable)
+    binds
+    (assoc binds variable expr)))
+
 (defn- determine-occursness [want-occurs? variable? v expr binds]
   (if want-occurs?
     `(if (occurs? ~variable? ~v ~expr ~binds)
        (throw (IllegalStateException. (str "Cycle found in the path " ~expr)))
-       (assoc ~binds ~v ~expr))
-    `(assoc ~binds ~v ~expr)))
+       (bind-phase ~binds ~v ~expr))
+    `(bind-phase ~binds ~v ~expr)))
 
 (defmacro create-var-unification-fn
   [want-occurs?]
@@ -141,7 +150,7 @@
    return a bindings map for two expressions.  This function uses an 'occurs check'
    methodology for detecting cycles."
   [variable-fn]
-  (partial garner-unifiers unify-variable variable-fn))
+  #(garner-unifiers unify-variable variable-fn % %2 {}))
 
 (defn make-occurs-subst-fn
   "Given a function to recognize unification variables, returns a function that
