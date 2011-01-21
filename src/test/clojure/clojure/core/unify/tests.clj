@@ -38,7 +38,7 @@
   (is (= '{?y :bar, ?x :foo}               (#'clojure.core.unify/garner-unifiers '{?x 42 ?y 108}   '{:foo 42 :bar 108})))
   (is (= '{B 2, A 1}                       (#'clojure.core.unify/garner-unifiers *caps* '(A B)     '(1 2))))
   (is (= '{Bar 2, Foo 1}                   (#'clojure.core.unify/garner-unifiers *caps* '(Foo Bar) '(1 2))))
-  (is (= '{?y a, ?x ?y}                    (#'clojure.core.unify/garner-unifiers '(?x ?y a) '(?y ?x ?x)))))
+  (is (= '{?y a, ?x ?y}                    (#'clojure.core.unify/garner-unifiers '(?x ?y a)        '(?y ?x ?x)))))
 
 
 #_(deftest test-range-variables

@@ -9,7 +9,7 @@
 (ns ^{:doc "A unification library for Clojure."
       :author "Michael Fogus"}
   clojure.core.unify
-  (:require [clojure [zip :as zip]])
+  (:require [clojure.zip :as zip])
   (:use     [clojure.walk :as walk :only [prewalk]]))
 
 (defn ignore-variable? [sym] (= '_ sym))
@@ -139,11 +139,9 @@
           (subst-bindings variable?)
           (try-subst variable? y))))   ;; y is arbitrary
 
-;;
-;; PUBLIC API
-;; 
+;; #  PUBLIC API
 
-;; OCCURS
+;; ## OCCURS
 
 (defn make-occurs-unify-fn
   "Given a function to recognize unification variables, returns a function to
@@ -181,8 +179,7 @@
        :arglists '([expression1 expression2])}
   unifier (make-occurs-unifier-fn *variablep*))
 
-
-;; NO OCCURS
+;; ## NO OCCURS
 
 (defn make-unify-fn
   "Given a function to recognize unification variables, returns a function to
