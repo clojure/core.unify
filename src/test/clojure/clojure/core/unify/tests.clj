@@ -12,7 +12,7 @@
   (:use [clojure.core.unify] :reload-all)
   (:use [clojure.test]))
 
-(def *caps* #(and (symbol? %) (Character/isUpperCase (first (name %)))))
+(def CAPS #(and (symbol? %) (Character/isUpperCase (first (name %)))))
 
 (deftest test-garner-unifiers
   (is (= {}                                (#'clojure.core.unify/garner-unifiers '(a b)            '(a b))))
@@ -36,12 +36,12 @@
   (is (= '{?z (g ?x), ?y (g ?x)}           (#'clojure.core.unify/garner-unifiers '(f (g ?x) ?y)    '(f ?y ?z))))
   (is (= '{?a a}                           (#'clojure.core.unify/garner-unifiers '?a               'a)))
   (is (= '{?y :bar, ?x :foo}               (#'clojure.core.unify/garner-unifiers '{?x 42 ?y 108}   '{:foo 42 :bar 108})))
-  (is (= '{B 2, A 1}                       (#'clojure.core.unify/garner-unifiers *caps* '(A B)     '(1 2))))
-  (is (= '{Bar 2, Foo 1}                   (#'clojure.core.unify/garner-unifiers *caps* '(Foo Bar) '(1 2))))
+  (is (= '{B 2, A 1}                       (#'clojure.core.unify/garner-unifiers CAPS '(A B)     '(1 2))))
+  (is (= '{Bar 2, Foo 1}                   (#'clojure.core.unify/garner-unifiers CAPS '(Foo Bar) '(1 2))))
   (is (= '{?y a, ?x ?y}                    (#'clojure.core.unify/garner-unifiers '(?x ?y a)        '(?y ?x ?x)))))
 
 
-#_(deftest test-range-variables
+(deftest test-range-variables
   (is (= '{?x 1 ?y (2 3)}                  (#'clojure.core.unify/garner-unifiers '(?x & ?y) [1 2 3])))
   (is (= '{?x 1 ?y 2 ?z (3)}               (#'clojure.core.unify/garner-unifiers '(?x ?y & ?z) [1 2 3])))
   (is (= '{?x 1 ?y ()}                     (#'clojure.core.unify/garner-unifiers '(?x & ?y) [1]))))
@@ -49,16 +49,16 @@
 (deftest test-ignore-variables
   (is (= '{?x 1 ?y 3}                      (#'clojure.core.unify/garner-unifiers '(?x _ ?y) [1 2 3])))
   (is (= '{}                               (#'clojure.core.unify/garner-unifiers '(_ _ _) [1 2 3])))
-  #_(is (= '{?x 1}                           (#'clojure.core.unify/garner-unifiers '(?x & _) [1 2 3])))
-  #_(is (= '{?y (2 3)}                       (#'clojure.core.unify/garner-unifiers '(_ & ?y) [1 2 3]))))
+  (is (= '{?x 1}                           (#'clojure.core.unify/garner-unifiers '(?x & _) [1 2 3])))
+  (is (= '{?y (2 3)}                       (#'clojure.core.unify/garner-unifiers '(_ & ?y) [1 2 3]))))
 
 (deftest test-subst-bindings
   (is (= '{?y a, ?x a}                     (#'clojure.core.unify/subst-bindings '{?y a, ?x ?y}))))
 
 
 (deftest test-unifier*
-  (is (= '(a a a)                          (#'clojure.core.unify/unifier* *caps* '(X Y a) '(Y X X) '{Y a, X a})))
-  (is (= '(a a a)                          (#'clojure.core.unify/unifier* *caps* '(X Y a) '(Y X X))))
+  (is (= '(a a a)                          (#'clojure.core.unify/unifier* CAPS '(X Y a) '(Y X X) '{Y a, X a})))
+  (is (= '(a a a)                          (#'clojure.core.unify/unifier* CAPS '(X Y a) '(Y X X))))
   (is (= '((?a * 5 ** 2) + (4 * 5) + 3)    (#'clojure.core.unify/unifier* '((?a * ?x ** 2) + (?b * ?x) + ?c) '(?z + (4 * 5) + 3)))))
 
 

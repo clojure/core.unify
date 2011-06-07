@@ -14,7 +14,7 @@
 
 (defn ignore-variable? [sym] (= '_ sym))
 
-(def *variablep* #(or (ignore-variable? %)
+(def VARIABLE? #(or (ignore-variable? %)
                       (and (symbol? %) (re-matches #"^\?.*" (name %)))))
 
 (defn- composite?
@@ -90,7 +90,7 @@
    unifiers (bindings) found.  Will throw an `IllegalStateException` if the expressions
    contain a cycle relationship.  Will also throw an `IllegalArgumentException` if the
    sub-expressions clash."
-  ([x y]           (garner-unifiers *variablep* x y))
+  ([x y]           (garner-unifiers VARIABLE? x y))
   ([variable? x y] (garner-unifiers variable? x y {}))
   ([variable? x y binds] (garner-unifiers unify-variable variable? x y binds))
   ([uv-fn variable? x y binds]
@@ -112,7 +112,7 @@
 
 (defn- subst-bindings
   "Flattens recursive bindings in the given map."
-  ([binds] (subst-bindings *variablep* binds))
+  ([binds] (subst-bindings VARIABLE? binds))
   ([variable? binds]
      (into {} (map (fn [[k v]]
                      [k (loop [v v]
@@ -133,7 +133,7 @@
 (defn- unifier*
   "Attempts the entire unification process from garnering the bindings to substituting
    the appropriate bindings."
-  ([x y] (unifier* *variablep* x y))
+  ([x y] (unifier* VARIABLE? x y))
   ([variable? x y]
      (unifier* variable? x y (garner-unifiers variable? x y)))
   ([variable? x y binds]
@@ -170,16 +170,16 @@
 (def ^{:doc      (str (:doc (meta #'garner-unifiers))
                       "  Note: This function is implemented with an occurs-check.")
        :arglists '([expression1 expression2])}
-  unify   (make-occurs-unify-fn *variablep*))
+  unify   (make-occurs-unify-fn VARIABLE?))
 
 (def ^{:doc      (:doc (meta #'try-subst))
        :arglists '([expression bindings])}
-  subst   (make-occurs-subst-fn *variablep*))
+  subst   (make-occurs-subst-fn VARIABLE?))
 
 (def ^{:doc      (str (:doc (meta #'unifier*))
                       "  Note: This function is implemented with an occurs-check.")
        :arglists '([expression1 expression2])}
-  unifier (make-occurs-unifier-fn *variablep*))
+  unifier (make-occurs-unifier-fn VARIABLE?))
 
 ;; ## NO OCCURS
 
@@ -209,10 +209,10 @@
 (def ^{:doc      (str (:doc (meta #'garner-unifiers))
                       "  Note: This function is implemented **without** an occurs-check.")
        :arglists '([expression1 expression2])}
-  unify-   (make-unify-fn *variablep*))
+  unify-   (make-unify-fn VARIABLE?))
 
 
 (def ^{:doc      (str (:doc (meta #'unifier*))
                       "  Note: This function is implemented **without** an occurs-check.")
        :arglists '([expression1 expression2])}
-  unifier- (make-unifier-fn *variablep*))
+  unifier- (make-unifier-fn VARIABLE?))
