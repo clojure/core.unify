@@ -40,6 +40,14 @@
   (is (= '{Bar 2, Foo 1}                   (#'clojure.core.unify/garner-unifiers CAPS '(Foo Bar) '(1 2))))
   (is (= '{?y a, ?x ?y}                    (#'clojure.core.unify/garner-unifiers '(?x ?y a)        '(?y ?x ?x)))))
 
+(deftest test-norvig-bug-cases
+  (testing "that the unification of the problem cases in Norvig's paper
+            'Correcting A Widespread Error in Uniﬁcation Algorithms'. An
+            incorrect unifier will return nil or loop forever."
+    (is (= '{?x ?y}                        (unify '(p ?x ?y) '(p ?y ?x))))
+    (is (= '{?y a, ?x ?y}                  (unify '(p ?x ?y a) '(p ?y ?x ?x))))
+    ;; higher-order predicates!
+    (is (= '{?x ?y, ?z (p ?x ?y)}          (unify '(q (p ?x ?y) (p ?y ?x)) '(q ?z ?z))))))
 
 (deftest test-range-variables
   (is (= '{?x 1 ?y (2 3)}                  (#'clojure.core.unify/garner-unifiers '(?x & ?y) [1 2 3])))
