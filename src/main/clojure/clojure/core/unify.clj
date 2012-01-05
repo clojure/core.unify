@@ -27,7 +27,7 @@
       (instance? clojure.lang.Seqable x)
       (nil? x)
       (instance? Iterable x)
-      (-> x .getClass .isArray)
+      (-> x class .isArray)
       (string? x)
       (instance? java.util.Map x)))
 
