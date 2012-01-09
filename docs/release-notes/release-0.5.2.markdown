@@ -38,7 +38,8 @@ Places
 Changes from version 0.5.1
 --------------------------
 
-* 
+* Removed all reflection warnings in the code. (thanks goes to André Thieme for pointing them out)
+* More tests around common unification edge cases.
 
 Plans
 -----
