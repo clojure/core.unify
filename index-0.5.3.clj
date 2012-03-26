@@ -1,6 +1,6 @@
 {:namespaces
  ({:source-url
-   "https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj",
+   "https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj",
    :wiki-url
    "http://clojure.github.com/core.unify/clojure.core.unify-api.html",
    :name "clojure.core.unify",
@@ -11,9 +11,9 @@
    :name "make-occurs-subst-fn",
    :namespace "clojure.core.unify",
    :source-url
-   "https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L155",
+   "https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L155",
    :raw-source-url
-   "https://github.com/clojure/core.unify/raw/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj",
+   "https://github.com/clojure/core.unify/raw/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj",
    :wiki-url
    "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/make-occurs-subst-fn",
    :doc
@@ -25,9 +25,9 @@
    :name "make-occurs-unifier-fn",
    :namespace "clojure.core.unify",
    :source-url
-   "https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L162",
+   "https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L162",
    :raw-source-url
-   "https://github.com/clojure/core.unify/raw/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj",
+   "https://github.com/clojure/core.unify/raw/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj",
    :wiki-url
    "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/make-occurs-unifier-fn",
    :doc
@@ -39,9 +39,9 @@
    :name "make-occurs-unify-fn",
    :namespace "clojure.core.unify",
    :source-url
-   "https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L148",
+   "https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L148",
    :raw-source-url
-   "https://github.com/clojure/core.unify/raw/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj",
+   "https://github.com/clojure/core.unify/raw/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj",
    :wiki-url
    "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/make-occurs-unify-fn",
    :doc
@@ -53,9 +53,9 @@
    :name "make-subst-fn",
    :namespace "clojure.core.unify",
    :source-url
-   "https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L192",
+   "https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L192",
    :raw-source-url
-   "https://github.com/clojure/core.unify/raw/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj",
+   "https://github.com/clojure/core.unify/raw/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj",
    :wiki-url
    "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/make-subst-fn",
    :doc
@@ -67,9 +67,9 @@
    :name "make-unifier-fn",
    :namespace "clojure.core.unify",
    :source-url
-   "https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L198",
+   "https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L198",
    :raw-source-url
-   "https://github.com/clojure/core.unify/raw/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj",
+   "https://github.com/clojure/core.unify/raw/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj",
    :wiki-url
    "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/make-unifier-fn",
    :doc
@@ -81,9 +81,9 @@
    :name "make-unify-fn",
    :namespace "clojure.core.unify",
    :source-url
-   "https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L186",
+   "https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L186",
    :raw-source-url
-   "https://github.com/clojure/core.unify/raw/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj",
+   "https://github.com/clojure/core.unify/raw/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj",
    :wiki-url
    "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/make-unify-fn",
    :doc
@@ -95,9 +95,9 @@
    :name "subst",
    :namespace "clojure.core.unify",
    :source-url
-   "https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L175",
+   "https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L175",
    :raw-source-url
-   "https://github.com/clojure/core.unify/raw/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj",
+   "https://github.com/clojure/core.unify/raw/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj",
    :wiki-url
    "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/subst",
    :doc
@@ -109,9 +109,9 @@
    :name "unifier",
    :namespace "clojure.core.unify",
    :source-url
-   "https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L179",
+   "https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L179",
    :raw-source-url
-   "https://github.com/clojure/core.unify/raw/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj",
+   "https://github.com/clojure/core.unify/raw/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj",
    :wiki-url
    "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/unifier",
    :doc
@@ -123,9 +123,9 @@
    :name "unifier-",
    :namespace "clojure.core.unify",
    :source-url
-   "https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L215",
+   "https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L215",
    :raw-source-url
-   "https://github.com/clojure/core.unify/raw/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj",
+   "https://github.com/clojure/core.unify/raw/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj",
    :wiki-url
    "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/unifier-",
    :doc
@@ -137,9 +137,9 @@
    :name "unify",
    :namespace "clojure.core.unify",
    :source-url
-   "https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L170",
+   "https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L170",
    :raw-source-url
-   "https://github.com/clojure/core.unify/raw/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj",
+   "https://github.com/clojure/core.unify/raw/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj",
    :wiki-url
    "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/unify",
    :doc
@@ -151,9 +151,9 @@
    :name "unify-",
    :namespace "clojure.core.unify",
    :source-url
-   "https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L209",
+   "https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L209",
    :raw-source-url
-   "https://github.com/clojure/core.unify/raw/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj",
+   "https://github.com/clojure/core.unify/raw/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj",
    :wiki-url
    "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/unify-",
    :doc

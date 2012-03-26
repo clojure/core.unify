@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>clojure.core.unify - Unification library 0.5.2 API documentation</title>
+    <title>clojure.core.unify - Unification library 0.5.3 API documentation</title>
     <link href="static/favicon.png" rel="icon" />
     <link href="static/favicon.png" rel="shortcut icon" />
     <link media="all" type="text/css" href="static/clojure.css" rel="stylesheet" />
@@ -27,7 +27,7 @@ namespace.
       <div id="leftcolumn"><div style="text-align: center;"></div>
 <div class="menu">
   <div class="WikiCustomNav WikiElement wiki">
-    <span class="toc-header"><span id="project-name">Unification library</span> <span id="version">0.5.2</span> API</span><br />
+    <span class="toc-header"><span id="project-name">Unification library</span> <span id="version">0.5.3</span> API</span><br />
     <ul>
       <li><a class="wiki_link" href="index.html">Overview</a></li>
       <li><a class="wiki_link" href="api-index.html">API Index</a></li>
@@ -45,36 +45,55 @@ namespace.
                 <div id="right-sidebar"><div id="toc">
   <h1 class="nopad">Table of Contents</h1>
   <div style="margin-left: 1em;" class="toc-section">
-    <a href="#toc0">Overview</a>
+    <a href="#toc0" style="margin-top: 3px;">Overview</a>
+    
+  </div><div style="margin-left: 1em;" class="toc-section">
+    <a href="#" style="margin-top: 3px;"></a>
+    
+  </div><div style="margin-left: 1em;" class="toc-section">
+    <a href="#" style="margin-top: 3px;"></a>
+    
+  </div><div style="margin-left: 1em;" class="toc-section">
+    <a href="#var-section" style="margin-top: 3px;">Vars and Functions</a>
     <div style="margin-left: 1em;" class="toc-entry">
-      <a href="#clojure.core.unify/make-occurs-subst-fn">make-occurs-subst-fn</a>
+      <a class="toc-entry-anchor" href="#clojure.core.unify/make-occurs-subst-fn">make-occurs-subst-fn</a>
+      
     </div><div style="margin-left: 1em;" class="toc-entry">
-      <a href="#clojure.core.unify/make-occurs-unifier-fn">make-occurs-unifier-fn</a>
+      <a class="toc-entry-anchor" href="#clojure.core.unify/make-occurs-unifier-fn">make-occurs-unifier-fn</a>
+      
     </div><div style="margin-left: 1em;" class="toc-entry">
-      <a href="#clojure.core.unify/make-occurs-unify-fn">make-occurs-unify-fn</a>
+      <a class="toc-entry-anchor" href="#clojure.core.unify/make-occurs-unify-fn">make-occurs-unify-fn</a>
+      
     </div><div style="margin-left: 1em;" class="toc-entry">
-      <a href="#clojure.core.unify/make-subst-fn">make-subst-fn</a>
+      <a class="toc-entry-anchor" href="#clojure.core.unify/make-subst-fn">make-subst-fn</a>
+      
     </div><div style="margin-left: 1em;" class="toc-entry">
-      <a href="#clojure.core.unify/make-unifier-fn">make-unifier-fn</a>
+      <a class="toc-entry-anchor" href="#clojure.core.unify/make-unifier-fn">make-unifier-fn</a>
+      
     </div><div style="margin-left: 1em;" class="toc-entry">
-      <a href="#clojure.core.unify/make-unify-fn">make-unify-fn</a>
+      <a class="toc-entry-anchor" href="#clojure.core.unify/make-unify-fn">make-unify-fn</a>
+      
     </div><div style="margin-left: 1em;" class="toc-entry">
-      <a href="#clojure.core.unify/subst">subst</a>
+      <a class="toc-entry-anchor" href="#clojure.core.unify/subst">subst</a>
+      
     </div><div style="margin-left: 1em;" class="toc-entry">
-      <a href="#clojure.core.unify/unifier">unifier</a>
+      <a class="toc-entry-anchor" href="#clojure.core.unify/unifier">unifier</a>
+      
     </div><div style="margin-left: 1em;" class="toc-entry">
-      <a href="#clojure.core.unify/unifier-">unifier-</a>
+      <a class="toc-entry-anchor" href="#clojure.core.unify/unifier-">unifier-</a>
+      
     </div><div style="margin-left: 1em;" class="toc-entry">
-      <a href="#clojure.core.unify/unify">unify</a>
+      <a class="toc-entry-anchor" href="#clojure.core.unify/unify">unify</a>
+      
     </div><div style="margin-left: 1em;" class="toc-entry">
-      <a href="#clojure.core.unify/unify-">unify-</a>
+      <a class="toc-entry-anchor" href="#clojure.core.unify/unify-">unify-</a>
+      
     </div>
-    <br />
   </div>
 </div>
 </div>
-                <div id="content-tag"><h1 id="overview">API for <span id="namespace-name">clojure.core.unify</span>
-  - <span id="header-project">Unification library</span> <span id="header-version">0.5.2</span> (<span id="header-status">in development</span>)
+                <div id="content-tag"><h1 id="overview">API for <span id="clojure.core.unify">clojure.core.unify</span>
+  - <span id="header-project">Unification library</span> <span id="header-version">0.5.3</span><span id="header-status-block"> (<span id="header-status">in development</span>)</span>
   </h1>
 <span id="author-line">by <span id="author-name">Michael Fogus</span><br /></span>
 <br />Full namespace name: <span id="long-name">clojure.core.unify</span>
@@ -84,145 +103,151 @@ namespace.
 
 
 <br />
-<h2>Public Variables and Functions</h2>
-<div id="var-entry">
-  <br />
-  <hr />
-  <h2 id="clojure.core.unify/make-occurs-subst-fn">make-occurs-subst-fn</h2>
-  <span id="var-type">function</span><br />
-  <pre id="var-usage">Usage: (make-occurs-subst-fn variable-fn)
+
+
+
+<div id="var-section">
+  <p></p>
+  <h2>Public Variables and Functions</h2>
+  <div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.core.unify/make-occurs-subst-fn">make-occurs-subst-fn</h2>
+    <span id="var-type">function</span><br />
+    <pre id="var-usage">Usage: (make-occurs-subst-fn variable-fn)
 </pre>
-  <pre id="var-docstr">Given a function to recognize unification variables, returns a function that
+    <pre id="var-docstr">Given a function to recognize unification variables, returns a function that
 will attempt to substitute unification bindings between two expressions.
 This function uses an 'occurs check' methodology for detecting cycles.</pre>
-  
-  
-  <a href="https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L155" id="var-source">Source</a>
-</div><div id="var-entry">
-  <br />
-  <hr />
-  <h2 id="clojure.core.unify/make-occurs-unifier-fn">make-occurs-unifier-fn</h2>
-  <span id="var-type">function</span><br />
-  <pre id="var-usage">Usage: (make-occurs-unifier-fn variable-fn)
+    
+    
+    <a href="https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L155" id="var-source">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.core.unify/make-occurs-unifier-fn">make-occurs-unifier-fn</h2>
+    <span id="var-type">function</span><br />
+    <pre id="var-usage">Usage: (make-occurs-unifier-fn variable-fn)
 </pre>
-  <pre id="var-docstr">Given a function to recognize unification variables, returns a function to
+    <pre id="var-docstr">Given a function to recognize unification variables, returns a function to
 perform the unification of two expressions. This function uses an 'occurs check'
 methodology for detecting cycles.</pre>
-  
-  
-  <a href="https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L162" id="var-source">Source</a>
-</div><div id="var-entry">
-  <br />
-  <hr />
-  <h2 id="clojure.core.unify/make-occurs-unify-fn">make-occurs-unify-fn</h2>
-  <span id="var-type">function</span><br />
-  <pre id="var-usage">Usage: (make-occurs-unify-fn variable-fn)
+    
+    
+    <a href="https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L162" id="var-source">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.core.unify/make-occurs-unify-fn">make-occurs-unify-fn</h2>
+    <span id="var-type">function</span><br />
+    <pre id="var-usage">Usage: (make-occurs-unify-fn variable-fn)
 </pre>
-  <pre id="var-docstr">Given a function to recognize unification variables, returns a function to
+    <pre id="var-docstr">Given a function to recognize unification variables, returns a function to
 return a bindings map for two expressions.  This function uses an 'occurs check'
 methodology for detecting cycles.</pre>
-  
-  
-  <a href="https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L148" id="var-source">Source</a>
-</div><div id="var-entry">
-  <br />
-  <hr />
-  <h2 id="clojure.core.unify/make-subst-fn">make-subst-fn</h2>
-  <span id="var-type">function</span><br />
-  <pre id="var-usage">Usage: (make-subst-fn variable-fn)
+    
+    
+    <a href="https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L148" id="var-source">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.core.unify/make-subst-fn">make-subst-fn</h2>
+    <span id="var-type">function</span><br />
+    <pre id="var-usage">Usage: (make-subst-fn variable-fn)
 </pre>
-  <pre id="var-docstr">Given a function to recognize unification variables, returns a function that
+    <pre id="var-docstr">Given a function to recognize unification variables, returns a function that
 will attempt to substitute unification bindings between two expressions.</pre>
-  
-  
-  <a href="https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L192" id="var-source">Source</a>
-</div><div id="var-entry">
-  <br />
-  <hr />
-  <h2 id="clojure.core.unify/make-unifier-fn">make-unifier-fn</h2>
-  <span id="var-type">function</span><br />
-  <pre id="var-usage">Usage: (make-unifier-fn variable-fn)
+    
+    
+    <a href="https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L192" id="var-source">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.core.unify/make-unifier-fn">make-unifier-fn</h2>
+    <span id="var-type">function</span><br />
+    <pre id="var-usage">Usage: (make-unifier-fn variable-fn)
 </pre>
-  <pre id="var-docstr">Given a function to recognize unification variables, returns a function to
+    <pre id="var-docstr">Given a function to recognize unification variables, returns a function to
 perform the unification of two expressions.</pre>
-  
-  
-  <a href="https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L198" id="var-source">Source</a>
-</div><div id="var-entry">
-  <br />
-  <hr />
-  <h2 id="clojure.core.unify/make-unify-fn">make-unify-fn</h2>
-  <span id="var-type">function</span><br />
-  <pre id="var-usage">Usage: (make-unify-fn variable-fn)
+    
+    
+    <a href="https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L198" id="var-source">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.core.unify/make-unify-fn">make-unify-fn</h2>
+    <span id="var-type">function</span><br />
+    <pre id="var-usage">Usage: (make-unify-fn variable-fn)
 </pre>
-  <pre id="var-docstr">Given a function to recognize unification variables, returns a function to
+    <pre id="var-docstr">Given a function to recognize unification variables, returns a function to
 return a bindings map for two expressions.</pre>
-  
-  
-  <a href="https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L186" id="var-source">Source</a>
-</div><div id="var-entry">
-  <br />
-  <hr />
-  <h2 id="clojure.core.unify/subst">subst</h2>
-  <span id="var-type">function</span><br />
-  <pre id="var-usage">Usage: (subst expression bindings)
+    
+    
+    <a href="https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L186" id="var-source">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.core.unify/subst">subst</h2>
+    <span id="var-type">function</span><br />
+    <pre id="var-usage">Usage: (subst expression bindings)
 </pre>
-  <pre id="var-docstr">Attempts to substitute the bindings in the appropriate locations in the given expression.</pre>
-  
-  
-  <a href="https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L175" id="var-source">Source</a>
-</div><div id="var-entry">
-  <br />
-  <hr />
-  <h2 id="clojure.core.unify/unifier">unifier</h2>
-  <span id="var-type">function</span><br />
-  <pre id="var-usage">Usage: (unifier expression1 expression2)
+    <pre id="var-docstr">Attempts to substitute the bindings in the appropriate locations in the given expression.</pre>
+    
+    
+    <a href="https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L175" id="var-source">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.core.unify/unifier">unifier</h2>
+    <span id="var-type">function</span><br />
+    <pre id="var-usage">Usage: (unifier expression1 expression2)
 </pre>
-  <pre id="var-docstr">Attempts the entire unification process from garnering the bindings to substituting
+    <pre id="var-docstr">Attempts the entire unification process from garnering the bindings to substituting
 the appropriate bindings.  Note: This function is implemented with an occurs-check.</pre>
-  
-  
-  <a href="https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L179" id="var-source">Source</a>
-</div><div id="var-entry">
-  <br />
-  <hr />
-  <h2 id="clojure.core.unify/unifier-">unifier-</h2>
-  <span id="var-type">function</span><br />
-  <pre id="var-usage">Usage: (unifier- expression1 expression2)
+    
+    
+    <a href="https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L179" id="var-source">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.core.unify/unifier-">unifier-</h2>
+    <span id="var-type">function</span><br />
+    <pre id="var-usage">Usage: (unifier- expression1 expression2)
 </pre>
-  <pre id="var-docstr">Attempts the entire unification process from garnering the bindings to substituting
+    <pre id="var-docstr">Attempts the entire unification process from garnering the bindings to substituting
 the appropriate bindings.  Note: This function is implemented **without** an occurs-check.</pre>
-  
-  
-  <a href="https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L215" id="var-source">Source</a>
-</div><div id="var-entry">
-  <br />
-  <hr />
-  <h2 id="clojure.core.unify/unify">unify</h2>
-  <span id="var-type">function</span><br />
-  <pre id="var-usage">Usage: (unify expression1 expression2)
+    
+    
+    <a href="https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L215" id="var-source">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.core.unify/unify">unify</h2>
+    <span id="var-type">function</span><br />
+    <pre id="var-usage">Usage: (unify expression1 expression2)
 </pre>
-  <pre id="var-docstr">Attempt to unify x and y with the given bindings (if any). Potentially returns a map of the 
+    <pre id="var-docstr">Attempt to unify x and y with the given bindings (if any). Potentially returns a map of the 
 unifiers (bindings) found.  Will throw an `IllegalStateException` if the expressions
 contain a cycle relationship.  Will also throw an `IllegalArgumentException` if the
 sub-expressions clash.  Note: This function is implemented with an occurs-check.</pre>
-  
-  
-  <a href="https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L170" id="var-source">Source</a>
-</div><div id="var-entry">
-  <br />
-  <hr />
-  <h2 id="clojure.core.unify/unify-">unify-</h2>
-  <span id="var-type">function</span><br />
-  <pre id="var-usage">Usage: (unify- expression1 expression2)
+    
+    
+    <a href="https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L170" id="var-source">Source</a>
+  </div><div id="var-entry">
+    <br />
+    <hr />
+    <h2 id="clojure.core.unify/unify-">unify-</h2>
+    <span id="var-type">function</span><br />
+    <pre id="var-usage">Usage: (unify- expression1 expression2)
 </pre>
-  <pre id="var-docstr">Attempt to unify x and y with the given bindings (if any). Potentially returns a map of the 
+    <pre id="var-docstr">Attempt to unify x and y with the given bindings (if any). Potentially returns a map of the 
 unifiers (bindings) found.  Will throw an `IllegalStateException` if the expressions
 contain a cycle relationship.  Will also throw an `IllegalArgumentException` if the
 sub-expressions clash.  Note: This function is implemented **without** an occurs-check.</pre>
-  
-  
-  <a href="https://github.com/clojure/core.unify/blob/2869b3a2ef1041a8170c1a4e0f08f4f09630a185/src/main/clojure/clojure/core/unify.clj#L209" id="var-source">Source</a>
+    
+    
+    <a href="https://github.com/clojure/core.unify/blob/5eabc7dade856f05f622114ae73acc174a59d398/src/main/clojure/clojure/core/unify.clj#L209" id="var-source">Source</a>
+  </div>
 </div>
 
 
@@ -232,7 +257,7 @@ sub-expressions clash.  Note: This function is implemented **without** an occurs
           </div>
 	</div>
 	<div id="foot">
-	  <div style="text-align: center;" id="copyright">Copyright 2007-2011 by Rich Hickey and the various contributors</div>
+	  <div style="text-align: center;" id="copyright">Copyright 2007-2012 by Rich Hickey and the various contributors</div>
 	</div>
       </div>
       <div id="DesignedBy">Logo &amp; site design by <a title="Visit Tom Hickey's website." href="http://www.tomhickey.com">Tom Hickey</a>.<br />
