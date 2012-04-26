@@ -85,6 +85,10 @@
        :private true}
   unify-variable- (create-var-unification-fn false))
 
+(defn wildcard? [form]
+  (and (composite? form)
+       (#{'&} (first form))))
+
 (defn- garner-unifiers
   "Attempt to unify x and y with the given bindings (if any). Potentially returns a map of the 
    unifiers (bindings) found.  Will throw an `IllegalStateException` if the expressions
@@ -99,8 +103,8 @@
       (= x y)                   binds
       (variable? x)             (uv-fn variable? x y binds)
       (variable? y)             (uv-fn variable? y x binds)
-      (#{'&} (first x))         (uv-fn variable? (second x) y binds)
-      (#{'&} (first y))         (uv-fn variable? (second y) x binds)
+      (wildcard? x)             (uv-fn variable? (second x) y binds)
+      (wildcard? y)             (uv-fn variable? (second y) x binds)
       (every? composite? [x y]) (garner-unifiers variable?
                                                  (rest x) 
                                                  (rest y)
