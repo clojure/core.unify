@@ -50,11 +50,13 @@
 
 (defn- bind-phase
   [binds variable expr]
-  (if (ignore-variable? variable)
+  (if (or (nil? expr)
+          (ignore-variable? variable))
     binds
     (assoc binds variable expr)))
 
-(defn- determine-occursness [want-occurs? variable? v expr binds]
+(defn- determine-occursness
+  [want-occurs? variable? v expr binds]
   (if want-occurs?
     `(if (occurs? ~variable? ~v ~expr ~binds)
        (throw (IllegalStateException. (str "Cycle found in the path " ~expr)))
@@ -63,11 +65,10 @@
 
 (defmacro create-var-unification-fn
   [want-occurs?]
-  (let [varp  'varp ;;(gensym)
-        v     'v ;;(gensym)
-        expr  'expr ;;(gensym)
-        binds 'binds ;;(gensym)
-        ]
+  (let [varp  (gensym)
+        v     (gensym)
+        expr  (gensym)
+        binds (gensym)]
     `(fn var-unify
        [~varp ~v ~expr ~binds]
        (if-let [vb# (~binds ~v)] 
@@ -128,6 +129,7 @@
 (defn- try-subst
   "Attempts to substitute the bindings in the appropriate locations in the given expression."
   [variable? x binds]
+  {:pre [(map? binds) (fn? variable?)]}
   (walk/prewalk (fn [expr] 
                   (if (variable? expr)
                     (or (binds expr) expr) 

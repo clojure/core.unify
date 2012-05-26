@@ -40,15 +40,6 @@
   (is (= '{Bar 2, Foo 1}                   (#'clojure.core.unify/garner-unifiers CAPS '(Foo Bar) '(1 2))))
   (is (= '{?y a, ?x ?y}                    (#'clojure.core.unify/garner-unifiers '(?x ?y a)        '(?y ?x ?x)))))
 
-(deftest test-norvig-bug-cases
-  (testing "that the unification of the problem cases in Norvig's paper
-            'Correcting A Widespread Error in Uniﬁcation Algorithms'. An
-            incorrect unifier will return nil or loop forever."
-    (is (= '{?x ?y}                        (unify '(p ?x ?y) '(p ?y ?x))))
-    (is (= '{?y a, ?x ?y}                  (unify '(p ?x ?y a) '(p ?y ?x ?x))))
-    ;; higher-order predicates!
-    (is (= '{?x ?y, ?z (p ?x ?y)}          (unify '(q (p ?x ?y) (p ?y ?x)) '(q ?z ?z))))))
-
 (deftest test-range-variables
   (is (= '{?x 1 ?y (2 3)}                  (#'clojure.core.unify/garner-unifiers '(?x & ?y) [1 2 3])))
   (is (= '{?x 1 ?y 2 ?z (3)}               (#'clojure.core.unify/garner-unifiers '(?x ?y & ?z) [1 2 3])))
@@ -69,20 +60,17 @@
   (is (= '(a a a)                          (#'clojure.core.unify/unifier* CAPS '(X Y a) '(Y X X))))
   (is (= '((?a * 5 ** 2) + (4 * 5) + 3)    (#'clojure.core.unify/unifier* '((?a * ?x ** 2) + (?b * ?x) + ?c) '(?z + (4 * 5) + 3)))))
 
-
 (deftest test-unifier
   (is (= '((?a * 5 ** 2) + (4 * 5) + 3)    (#'clojure.core.unify/unifier '((?a * ?x ** 2) + (?b * ?x) + ?c) '(?z + (4 * 5) + 3))))
   (is (= 42                                (#'clojure.core.unify/unifier '?x 42)))
   (is (= '{a 2}                            (#'clojure.core.unify/unifier (hash-map 'a '?x) (hash-map 'a 2))))
   (is (= #{2 3 4}                          (#'clojure.core.unify/unifier #{'?a '?b '?c} #{2 3 4}))))
 
-
 (deftest test-unifier-no-occurs
   (is (= '((?a * 5 ** 2) + (4 * 5) + 3)    (#'clojure.core.unify/unifier- '((?a * ?x ** 2) + (?b * ?x) + ?c) '(?z + (4 * 5) + 3))))
   (is (= 42                                (#'clojure.core.unify/unifier- '?x 42)))
   (is (= '{a 2}                            (#'clojure.core.unify/unifier- (hash-map 'a '?x) (hash-map 'a 2))))
   (is (= #{2 3 4}                          (#'clojure.core.unify/unifier- #{'?a '?b '?c} #{2 3 4}))))
-
 
 (deftest test-mk-unifier
   (let [u (#'clojure.core.unify/make-occurs-unifier-fn #(and (symbol? %) 
@@ -91,3 +79,18 @@
 
 (deftest test-aux
   (is (#'clojure.core.unify/composite? "foo")))
+
+(deftest test-norvig-bug-cases
+  (testing "that the unification of the problem cases in Norvig's paper
+            'Correcting A Widespread Error in Uniﬁcation Algorithms'. An
+            incorrect unifier will return nil or loop forever."
+    (is (= '{?x ?y}                        (unify '(p ?x ?y) '(p ?y ?x))))
+    (is (= '{?y a, ?x ?y}                  (unify '(p ?x ?y a) '(p ?y ?x ?x))))
+    ;; higher-order predicates!
+    (is (= '{?x ?y, ?z (p ?x ?y)}          (unify '(q (p ?x ?y) (p ?y ?x)) '(q ?z ?z))))))
+
+(deftest regressions
+  (testing "That seqs of different lengths do not unify per UNIFY-4"
+    (is (= {} (unify '[1 ?x] '[1])))
+    (is (= {} (unify '[1 ?x ?y ?z] '[1])))))
+
