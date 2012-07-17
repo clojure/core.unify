@@ -222,3 +222,40 @@
                       "  Note: This function is implemented **without** an occurs-check.")
        :arglists '([expression1 expression2])}
   unifier- (make-unifier-fn VARIABLE?))
+
+
+(comment
+
+  (def T '[?a ?b])
+  
+  (defn make-matcher
+    [root]
+    (fn [tmpl req]
+      (-> req
+          :url
+          (.replace root "")
+          (.split "/")
+          seq
+          (unify- tmpl))))
+
+  (def match (make-matcher "http://foo.com/foo/"))
+
+  (match T {:url "http://foo.com/foo/1/2"})
+  ;;=> {?a 1, ?b 2}
+
+  (match T {:url "http://foo.com/foo/1"})
+  
+  (defn make-genr
+    [root]
+    (fn [tmpl binds]
+      (->> binds
+           (subst tmpl)
+           (interpose "/")
+           (cons root)
+           (apply str))))
+
+  (def gen (make-genr "http://foo.com/foo/"))
+  
+  (gen T '{?a 1, ?b 2})
+  ;=> "http://foo.com/foo/1/2"
+)
