@@ -1,4 +1,5 @@
-# clojure.core.unify
+clojure.core.unify
+========================================
 
 core.unify is a Clojure contrib library providing the following features:
 
@@ -10,71 +11,73 @@ core.unify is based on a library named Unifycle, found at http://github.com/fogu
 
 *[more information](http://fogus.me/fun/unifycle)*
 
-Example
--------
 
-```clojure
-(unifier '((?a * ?x ** 2) + (?b * ?x) + ?c) 
-         '(?z + (4 * 5) + 3))
-    
-;=> ((?a * 5 ** 2) + (4 * 5) + 3)
-```
 
-Getting core.unify
-------------------
+Releases and Dependency Information
+========================================
 
-You can use core.unify in your [Leiningen](https://github.com/technomancy/leiningen) and [Cake](https://github.com/flatland/cake) projects with the following `:dependencies` directive in your `project.clj` file:
+Latest stable release: 0.5.3
 
-    [org.clojure/core.unify "0.5.2"]
+* [All Released Versions](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.clojure%22%20AND%20a%3A%22core.unify%22)
 
-For Maven-driven projects, use the following slice of XML in your `pom.xml`'s `<dependencies>` section:
+* [Development Snapshot Versions](https://oss.sonatype.org/index.html#nexus-search;gav~org.clojure~core.unify~~~)
+
+[Leiningen](https://github.com/technomancy/leiningen) dependency information:
+
+    [org.clojure/core.unify "0.5.3"]
+
+[Maven](http://maven.apache.org/) dependency information:
 
     <dependency>
-	  <groupId>org.clojure</groupId>
-	  <artifactId>core.unify</artifactId>
-	  <version>0.5.2</version>
-	</dependency>
-
-Enjoy!
-
-Places
-------
-
-* [Source code](https://github.com/clojure/core.unify)
-* [Ticket system](http://dev.clojure.org/jira/browse/UNIFY)
-* [Examples and documentation](http://fogus.me/fun/unifycle) -- in progress
+      <groupId>org.clojure</groupId>
+      <artifactId>core.unify</artifactId>
+      <version>0.5.3</version>
+    </dependency>
 
 
-Plans and ideas
----------------
 
-The following capabilities are under design, development, or consideration for future versions of core.unify:
+Example Usage
+========================================
 
-* High-performant unification based on unrolling recursive backtracking into polymorphic calls
-* Iterative unification option
-* Boolean unification
-* Implicit variable recognition option(s)
-* More examples
-* More documentation
+```clojure
+    (use 'clojure.core.unify)
 
-More planning is needed around capabilities not listed nor thought of.
+    (unifier '((?a * ?x ** 2) + (?b * ?x) + ?c) 
+         '(?z + (4 * 5) + 3))
+
+    ;=> ((?a * 5 ** 2) + (4 * 5) + 3)	
+```
+
+Refer to docstrings in the `clojure.core.unify` namespace.
 
 
-References
-----------
 
-- *PAIP* by Peter Norvig
-- [Michał Marczyk's impl](http://gist.github.com/374764)
-- *The Art of Prolog* by Leon Sterling and Ehud Shapiro
-- *Programming Languages: Application and Interpretation* by Shriram Krishnamurthi [here](http://www.cs.brown.edu/~sk/Publications/Books/ProgLangs/2007-04-26/)
-- [CL-unification](http://common-lisp.net/cgi-bin/viewcvs.cgi/cl-unification/?cvsroot=cl-unification)
-- *The Scheme Programming Language* by Kent Dybvig
-- *Problem-solving Methods in Artificial Intelligence* by Nils Nilsson
-- <http://books.google.com/books?id=UjrJDvu2fxkC&lpg=PA53&ots=EVEddEEeqQ&dq=occurs-check%20table&pg=PA53#v=onepage&q&f=false>
+Developer Information
+========================================
 
-License
--------
+* [GitHub project](https://github.com/clojure/core.unify)
 
-Copyright © 2011 Rich Hickey
+* [Bug Tracker](http://dev.clojure.org/jira/browse/UNIFY)
 
-Licensed under the EPL. (See the file epl.html.)
+* [Continuous Integration](http://build.clojure.org/job/core.unify/)
+
+* [Compatibility Test Matrix](http://build.clojure.org/job/core.unify-test-matrix/)
+
+
+
+Change Log
+====================
+
+* Release 0.5.3 on 2012.05.25
+  * Added `variable?` function
+  * Unification of seqs of differing lengths fails (as expected)
+* Release 0.5.2 on 2012.01.08
+  * Removed reflection warnings
+* Release 0.5.1 on 2011.10.11
+  * Rolled in basis of Unifycle
+
+
+Copyright and License
+========================================
+
+Copyright (c) Rich Hickey and Michael Fogus, 2012. All rights reserved.  The use and distribution terms for this software are covered by the Eclipse Public License 1.0 (http://opensource.org/licenses/eclipse-1.0.php) which can be found in the file epl-v10.html at the root of this distribution. By using this software in any fashion, you are agreeing to be bound bythe terms of this license.  You must not remove this notice, or any other, from this software.
