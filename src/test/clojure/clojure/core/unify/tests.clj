@@ -17,7 +17,7 @@
 (deftest test-garner-unifiers
   (is (= {}                                (#'clojure.core.unify/garner-unifiers '(a b)            '(a b))))
   (is (= {}                                (#'clojure.core.unify/garner-unifiers '(?a ?b)          '(?a ?b))))
-  (is (thrown? IllegalArgumentException    (#'clojure.core.unify/garner-unifiers '(?a ?a)          'a)))
+  (is (nil?                                (#'clojure.core.unify/garner-unifiers '(?a ?a)          'a)))
   (is (= '{?x 1}                           (#'clojure.core.unify/garner-unifiers '(f ?x ?y)        '(f 1 ?y))))
   (is (= '{?b 2, ?a 1}                     (#'clojure.core.unify/garner-unifiers '(?a ?b)          '(1 2))))
   (is (= '{?a (q)}                         (#'clojure.core.unify/garner-unifiers '(?a ?b)          '((q) ?b))))
@@ -25,10 +25,10 @@
   (is (= '{?x ?y}                          (#'clojure.core.unify/garner-unifiers '(?x ?x)          '(?y ?y))))
   (is (= '{?x ?y}                          (#'clojure.core.unify/garner-unifiers '(?x ?x ?x)       '(?y ?y ?y))))
   (is (= '{?x ?y}                          (#'clojure.core.unify/garner-unifiers '(?x ?y)          '(?y ?x))))
-  (is (thrown? IllegalArgumentException    (#'clojure.core.unify/garner-unifiers '(f ?x ?y)        '(g ?x ?y))))     ; clash
-  (is (thrown? IllegalArgumentException    (#'clojure.core.unify/garner-unifiers '(?a ?a)          '(1 2))))         ; clash
-  (is (thrown? IllegalArgumentException    (#'clojure.core.unify/garner-unifiers '(f ?a)           '(g 42))))        ; clash
-  (is (thrown? IllegalArgumentException    (#'clojure.core.unify/garner-unifiers '(?a ?a)          'a)))             ; clash
+  (is (nil?                                (#'clojure.core.unify/garner-unifiers '(f ?x ?y)        '(g ?x ?y))))     ; clash
+  (is (nil?                                (#'clojure.core.unify/garner-unifiers '(?a ?a)          '(1 2))))         ; clash
+  (is (nil?                                (#'clojure.core.unify/garner-unifiers '(f ?a)           '(g 42))))        ; clash
+  (is (nil?                                (#'clojure.core.unify/garner-unifiers '(?a ?a)          'a)))             ; clash
   (is (= '{?y (h), ?x (h)}                 (#'clojure.core.unify/garner-unifiers '(f ?x (h))       '(f (h) ?y))))
   (is (thrown? IllegalStateException       (#'clojure.core.unify/garner-unifiers '(f (g ?x) ?y)    '(f ?y ?x))))     ; cycle
   (is (thrown? IllegalStateException       (#'clojure.core.unify/garner-unifiers '?x               '(f ?x))))        ; cycle

@@ -112,8 +112,7 @@
                                                  (garner-unifiers variable?
                                                                   (first x)
                                                                   (first y) 
-                                                                  binds))
-      :else (throw (IllegalArgumentException. (str "Clash found in " x))))))
+                                                                  binds)))))
 
 (defn- subst-bindings
   "Flattens recursive bindings in the given map."
