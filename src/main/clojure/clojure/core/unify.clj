@@ -15,7 +15,7 @@
 (defn ignore-variable? [sym] (= '_ sym))
 
 (def VARIABLE? #(or (ignore-variable? %)
-                      (and (symbol? %) (re-matches #"^\?.*" (name %)))))
+                    (and (symbol? %) (re-matches #"^\?.*" (name %)))))
 
 (defn- composite?
   "Taken from the old `contrib.core/seqable?`. Since the meaning of 'seqable' is
@@ -95,8 +95,8 @@
    unifiers (bindings) found.  Will throw an `IllegalStateException` if the expressions
    contain a cycle relationship.  Will also throw an `IllegalArgumentException` if the
    sub-expressions clash."
-  ([x y]           (garner-unifiers VARIABLE? x y))
-  ([variable? x y] (garner-unifiers variable? x y {}))
+  ([x y]                 (garner-unifiers unify-variable VARIABLE? x y {}))
+  ([variable? x y]       (garner-unifiers unify-variable variable? x y {}))
   ([variable? x y binds] (garner-unifiers unify-variable variable? x y binds))
   ([uv-fn variable? x y binds]
      (cond
@@ -106,10 +106,12 @@
       (variable? y)             (uv-fn variable? y x binds)
       (wildcard? x)             (uv-fn variable? (second x) y binds)
       (wildcard? y)             (uv-fn variable? (second y) x binds)
-      (every? composite? [x y]) (garner-unifiers variable?
+      (every? composite? [x y]) (garner-unifiers uv-fn
+                                                 variable?
                                                  (rest x) 
                                                  (rest y)
-                                                 (garner-unifiers variable?
+                                                 (garner-unifiers uv-fn
+                                                                  variable?
                                                                   (first x)
                                                                   (first y) 
                                                                   binds)))))
@@ -155,7 +157,9 @@
    return a bindings map for two expressions.  This function uses an 'occurs check'
    methodology for detecting cycles."
   [variable-fn]
-  #(garner-unifiers unify-variable variable-fn %1 %2 %3))
+  (fn
+    ([x y] (garner-unifiers unify-variable variable-fn x y {}))
+    ([x y binds] (garner-unifiers unify-variable variable-fn x y binds))))
 
 (defn make-occurs-subst-fn
   "Given a function to recognize unification variables, returns a function that
@@ -192,7 +196,9 @@
   "Given a function to recognize unification variables, returns a function to
    return a bindings map for two expressions."
   [variable-fn]
-  #(garner-unifiers unify-variable- variable-fn %1 %2 %3))
+  (fn
+    ([x y] (garner-unifiers unify-variable- variable-fn x y {}))
+    ([x y binds] (garner-unifiers unify-variable- variable-fn x y binds))))
 
 (defn make-subst-fn
   "Given a function to recognize unification variables, returns a function that

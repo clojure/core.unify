@@ -82,7 +82,7 @@
 
 (deftest test-norvig-bug-cases
   (testing "that the unification of the problem cases in Norvig's paper
-            'Correcting A Widespread Error in Uniﬁcation Algorithms'. An
+            'Correcting A Widespread Error in Unification Algorithms'. An
             incorrect unifier will return nil or loop forever."
     (is (= '{?x ?y}                        (unify '(p ?x ?y) '(p ?y ?x))))
     (is (= '{?y a, ?x ?y}                  (unify '(p ?x ?y a) '(p ?y ?x ?x))))
