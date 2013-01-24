@@ -155,7 +155,7 @@
    return a bindings map for two expressions.  This function uses an 'occurs check'
    methodology for detecting cycles."
   [variable-fn]
-  #(garner-unifiers unify-variable variable-fn % %2 {}))
+  #(garner-unifiers unify-variable variable-fn %1 %2 %3))
 
 (defn make-occurs-subst-fn
   "Given a function to recognize unification variables, returns a function that
@@ -192,7 +192,7 @@
   "Given a function to recognize unification variables, returns a function to
    return a bindings map for two expressions."
   [variable-fn]
-  #(garner-unifiers unify-variable- variable-fn % %2 {}))
+  #(garner-unifiers unify-variable- variable-fn %1 %2 %3))
 
 (defn make-subst-fn
   "Given a function to recognize unification variables, returns a function that
