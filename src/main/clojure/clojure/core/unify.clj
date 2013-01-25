@@ -22,11 +22,13 @@
 (defn extract-lvars
   "Takes a datastructure and returns a distinct set of the logical
    variables found within."
-  [form]
-  (set
-   (walk/walk #(when (lvar? %) %)
-         #(keep identity %)
-         form)))
+  ([form]
+     (extract-lvars lvar? form))
+  ([lv-fn form]
+     (set
+      (walk/walk #(when (lv-fn %) %)
+                 #(keep identity %)
+                 form))))
 
 (defn- composite?
   "Taken from the old `contrib.core/seqable?`. Since the meaning of 'seqable' is
