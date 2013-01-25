@@ -14,8 +14,8 @@
 
 (defn ignore-variable? [sym] (= '_ sym))
 
-(def VARIABLE? #(or (ignore-variable? %)
-                    (and (symbol? %) (re-matches #"^\?.*" (name %)))))
+(def lvar? #(or (ignore-variable? %)
+                (and (symbol? %) (re-matches #"^\?.*" (name %)))))
 
 (defn- composite?
   "Taken from the old `contrib.core/seqable?`. Since the meaning of 'seqable' is
@@ -23,9 +23,8 @@
    predicate.  At the moment, the only meaning of `composite?` is:
    Returns true if `(seq x)` will succeed, false otherwise." 
   [x]
-  (or (seq? x)
-      (instance? clojure.lang.Seqable x)
-      (nil? x)
+  (or (coll? x)
+      (nil? x) 
       (instance? Iterable x)
       (-> x class .isArray)
       (string? x)
@@ -95,7 +94,7 @@
    unifiers (bindings) found.  Will throw an `IllegalStateException` if the expressions
    contain a cycle relationship.  Will also throw an `IllegalArgumentException` if the
    sub-expressions clash."
-  ([x y]                 (garner-unifiers unify-variable VARIABLE? x y {}))
+  ([x y]                 (garner-unifiers unify-variable lvar? x y {}))
   ([variable? x y]       (garner-unifiers unify-variable variable? x y {}))
   ([variable? x y binds] (garner-unifiers unify-variable variable? x y binds))
   ([uv-fn variable? x y binds]
@@ -118,7 +117,7 @@
 
 (defn- subst-bindings
   "Flattens recursive bindings in the given map."
-  ([binds] (subst-bindings VARIABLE? binds))
+  ([binds] (subst-bindings lvar? binds))
   ([variable? binds]
      (into {} (map (fn [[k v]]
                      [k (loop [v v]
@@ -140,7 +139,7 @@
 (defn- unifier*
   "Attempts the entire unification process from garnering the bindings to substituting
    the appropriate bindings."
-  ([x y] (unifier* VARIABLE? x y))
+  ([x y] (unifier* lvar? x y))
   ([variable? x y]
      (unifier* variable? x y (garner-unifiers variable? x y)))
   ([variable? x y binds]
@@ -179,16 +178,16 @@
 (def ^{:doc      (str (:doc (meta #'garner-unifiers))
                       "  Note: This function is implemented with an occurs-check.")
        :arglists '([expression1 expression2])}
-  unify   (make-occurs-unify-fn VARIABLE?))
+  unify   (make-occurs-unify-fn lvar?))
 
 (def ^{:doc      (:doc (meta #'try-subst))
        :arglists '([expression bindings])}
-  subst   (make-occurs-subst-fn VARIABLE?))
+  subst   (make-occurs-subst-fn lvar?))
 
 (def ^{:doc      (str (:doc (meta #'unifier*))
                       "  Note: This function is implemented with an occurs-check.")
        :arglists '([expression1 expression2])}
-  unifier (make-occurs-unifier-fn VARIABLE?))
+  unifier (make-occurs-unifier-fn lvar?))
 
 ;; ## NO OCCURS
 
@@ -220,13 +219,13 @@
 (def ^{:doc      (str (:doc (meta #'garner-unifiers))
                       "  Note: This function is implemented **without** an occurs-check.")
        :arglists '([expression1 expression2])}
-  unify-   (make-unify-fn VARIABLE?))
+  unify-   (make-unify-fn lvar?))
 
 
 (def ^{:doc      (str (:doc (meta #'unifier*))
                       "  Note: This function is implemented **without** an occurs-check.")
        :arglists '([expression1 expression2])}
-  unifier- (make-unifier-fn VARIABLE?))
+  unifier- (make-unifier-fn lvar?))
 
 
 (comment
