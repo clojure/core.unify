@@ -16,7 +16,7 @@ core.unify is based on a library named Unifycle, found at http://github.com/fogu
 Releases and Dependency Information
 ========================================
 
-Latest stable release: 0.5.4
+Latest stable release: 0.5.5
 
 * [All Released Versions](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.clojure%22%20AND%20a%3A%22core.unify%22)
 
@@ -24,7 +24,7 @@ Latest stable release: 0.5.4
 
 [Leiningen](https://github.com/technomancy/leiningen) dependency information:
 
-    [org.clojure/core.unify "0.5.3"]
+    [org.clojure/core.unify "0.5.5"]
 
 [Maven](http://maven.apache.org/) dependency information:
 
