@@ -9,13 +9,24 @@
 (ns ^{:doc "A unification library for Clojure."
       :author "Michael Fogus"}
   clojure.core.unify
-  (:require [clojure.zip :as zip])
-  (:use     [clojure.walk :as walk :only [prewalk]]))
+  (:require [clojure.zip :as zip]
+            [clojure.walk :as walk]))
 
 (defn ignore-variable? [sym] (= '_ sym))
 
+;; ### Utilities
+
 (def lvar? #(or (ignore-variable? %)
                 (and (symbol? %) (re-matches #"^\?.*" (name %)))))
+
+(defn extract-lvars
+  "Takes a datastructure and returns a distinct set of the logical
+   variables found within."
+  [form]
+  (set
+   (walk/walk #(when (lvar? %) %)
+         #(keep identity %)
+         form)))
 
 (defn- composite?
   "Taken from the old `contrib.core/seqable?`. Since the meaning of 'seqable' is
