@@ -128,9 +128,9 @@
                                                                   (first y) 
                                                                   binds)))))
 
-(defn- subst-bindings
-  "Flattens recursive bindings in the given map."
-  ([binds] (subst-bindings lvar? binds))
+(defn flatten-bindings
+  "Flattens recursive bindings in the given map to the same ground (if possible)."
+  ([binds] (flatten-bindings lvar? binds))
   ([variable? binds]
      (into {} (map (fn [[k v]]
                      [k (loop [v v]
@@ -157,7 +157,7 @@
      (unifier* variable? x y (garner-unifiers variable? x y)))
   ([variable? x y binds]
      (->> binds
-          (subst-bindings variable?)
+          (flatten-bindings variable?)
           (try-subst variable? y))))   ;; y is arbitrary
 
 ;; #  PUBLIC API

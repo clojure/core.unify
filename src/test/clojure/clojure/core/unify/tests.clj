@@ -51,8 +51,8 @@
   (is (= '{?x 1}                           (#'clojure.core.unify/garner-unifiers '(?x & _) [1 2 3])))
   (is (= '{?y (2 3)}                       (#'clojure.core.unify/garner-unifiers '(_ & ?y) [1 2 3]))))
 
-(deftest test-subst-bindings
-  (is (= '{?y a, ?x a}                     (#'clojure.core.unify/subst-bindings '{?y a, ?x ?y}))))
+(deftest test-flatten-bindings
+  (is (= '{?y a, ?x a}                     (#'clojure.core.unify/flatten-bindings '{?y a, ?x ?y}))))
 
 
 (deftest test-unifier*
