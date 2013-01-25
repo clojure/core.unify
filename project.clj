@@ -1,4 +1,4 @@
-(defproject core.unify "0.6.0-SNAPSHOT"
+(defproject core.unify "0.5.6-SNAPSHOT"
   :description "Clojure unification library."
   :dependencies [[org.clojure/clojure "1.5.0-master-SNAPSHOT"]]
   :dev-dependencies [[jline "0.9.94"]

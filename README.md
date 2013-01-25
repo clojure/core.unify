@@ -11,7 +11,10 @@ core.unify is based on a library named Unifycle, found at http://github.com/fogu
 
 *[more information](http://fogus.me/fun/unifycle)*
 
+Differences from core.logic
+===========================
 
+core.unify provides a la carte unification facilities that are not deeply tied into the operation of a logic engine. While core.logic does provide a similar simple unifier interface with support for specifying fine-grained constraints, if you have no need for a logic programming system, core.unify may be a better fit.
 
 Releases and Dependency Information
 ========================================
