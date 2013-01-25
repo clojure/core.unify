@@ -67,17 +67,23 @@ Developer Information
 * [Compatibility Test Matrix](http://build.clojure.org/job/core.unify-test-matrix/)
 
 
-
 Change Log
 ====================
 
+* Release 0.5.5 on 2013.01.25
+  - Exposed `lvar?` function
+  - Added `extract-lvars` function
+  - Exposed `flatten-bindings` function
+* Release 0.5.4 on 2013.01.24
+  - Added 3-arg version of `unify` and `unify-` allowing an 
+    additional environment map.
 * Release 0.5.3 on 2012.05.25
-  * Added `variable?` function
-  * Unification of seqs of differing lengths fails (as expected)
+  - Added `variable?` function
+  - Unification of seqs of differing lengths fails (as expected)
 * Release 0.5.2 on 2012.01.08
-  * Removed reflection warnings
+  - Removed reflection warnings
 * Release 0.5.1 on 2011.10.11
-  * Rolled in basis of Unifycle
+  - Rolled in basis of Unifycle
 
 
 Copyright and License
