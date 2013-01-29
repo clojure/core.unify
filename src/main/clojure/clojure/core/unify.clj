@@ -132,12 +132,13 @@
   "Flattens recursive bindings in the given map to the same ground (if possible)."
   ([binds] (flatten-bindings lvar? binds))
   ([variable? binds]
-     (into {} (map (fn [[k v]]
-                     [k (loop [v v]
-                          (if (variable? v)
-                            (recur (binds v))
-                            v))])
-                   binds))))
+     (into {} (remove (comp nil? second)
+                      (map (fn [[k v]]
+                             [k (loop [v v]
+                                  (if (variable? v)
+                                    (recur (binds v))
+                                    v))])
+                           binds)))))
 
 (defn- try-subst
   "Attempts to substitute the bindings in the appropriate locations in the given expression."
