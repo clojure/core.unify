@@ -43,7 +43,7 @@
 (deftest test-range-variables
   (is (= '{?x 1 ?y (2 3)}                  (#'clojure.core.unify/garner-unifiers '(?x & ?y) [1 2 3])))
   (is (= '{?x 1 ?y 2 ?z (3)}               (#'clojure.core.unify/garner-unifiers '(?x ?y & ?z) [1 2 3])))
-  (is (= '{?x 1 ?y ()}                     (#'clojure.core.unify/garner-unifiers '(?x & ?y) [1]))))
+  (is (= '{?x 1}                           (#'clojure.core.unify/garner-unifiers '(?x & ?y) [1]))))
 
 (deftest test-ignore-variables
   (is (= '{?x 1 ?y 3}                      (#'clojure.core.unify/garner-unifiers '(?x _ ?y) [1 2 3])))

@@ -116,8 +116,8 @@
       (= x y)                   binds
       (variable? x)             (uv-fn variable? x y binds)
       (variable? y)             (uv-fn variable? y x binds)
-      (wildcard? x)             (uv-fn variable? (second x) y binds)
-      (wildcard? y)             (uv-fn variable? (second y) x binds)
+      (wildcard? x)             (uv-fn variable? (second x) (seq y) binds)
+      (wildcard? y)             (uv-fn variable? (second y) (seq x) binds)
       (every? composite? [x y]) (garner-unifiers uv-fn
                                                  variable?
                                                  (rest x) 
@@ -301,37 +301,42 @@
            :genre :giallo})
 
 
-    (subst '[1 2 ?x ?y]
-           '{?x [3 4 ?y 6]})
+  (subst '[1 2 ?x ?y]
+         '{?x [3 4 ?y 6]})
+  
 
-
-    (unifier '[(?a * ?x | 2) + (?b * ?x) + ?c]
-             '[?z + (4 * 5) + 3])
-
-    (unify '[(?a * ?x | 2) + (?b * ?x) + ?c]
+  (unifier '[(?a * ?x | 2) + (?b * ?x) + ?c]
            '[?z + (4 * 5) + 3])
+
+  (unify '[(?a * ?x | 2) + (?b * ?x) + ?c]
+         '[?z + (4 * 5) + 3])
     
 
-    (unify '[(?a * ?x | 2) + (?b * ?x) + ?c]
-           '[(?a * 5 | 2) + (4 * 5) + 3])
+  (unify '[(?a * ?x | 2) + (?b * ?x) + ?c]
+         '[(?a * 5 | 2) + (4 * 5) + 3])
 
-    ;;=> {?c 3, ?b 4, ?x 5}
+  ;;=> {?c 3, ?b 4, ?x 5}
 
-    (unify '[(?a * 5 | 2) + (4 * 5) + 3]
-           '[?z + (4 * 5) + 3])
+  (unify '[(?a * 5 | 2) + (4 * 5) + 3]
+         '[?z + (4 * 5) + 3])
 
-    ;;=> {?z (?a * 5 | 2)}
+  ;;=> {?z (?a * 5 | 2)}
+  
+  (= (subst '[?z + (4 * 5) + 3]
+            '{?c 3, ?b 4, ?x 5
+              ?z (?a * 5 | 2)})
+     
+     (subst '[(?a * ?x | 2) + (?b * ?x) + ?c]
+            '{?c 3, ?b 4, ?x 5
+              ?z (?a * 5 | 2)}))
 
-    (= (subst '[?z + (4 * 5) + 3]
-              '{?c 3, ?b 4, ?x 5
-                ?z (?a * 5 | 2)})
-       
-       (subst '[(?a * ?x | 2) + (?b * ?x) + ?c]
-              '{?c 3, ?b 4, ?x 5
-                ?z (?a * 5 | 2)}))
+  ;;=> true
 
-    ;;=> true
+  (subst '[(?a * ?x | 2) + (?b * ?x) + ?c]
+         '{?c 3, ?b 4, ?x 5})
 
-    (subst '[(?a * ?x | 2) + (?b * ?x) + ?c]
-           '{?c 3, ?b 4, ?x 5})
+  (unify [1 2 3] '[?x & ?more])
+  (unify [1 2 3] '[_ _ _ & ?more])
+  (unifier [1 2 3] '[?x & ?more])
+
 )
