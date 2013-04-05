@@ -337,6 +337,7 @@
 
   (unify [1 2 3] '[?x & ?more])
   (unify [1 2 3] '[_ _ _ & ?more])
+  (unify [:foo 1 2] '[?head & _])
   (unifier [1 2 3] '[?x & ?more])
 
 )
