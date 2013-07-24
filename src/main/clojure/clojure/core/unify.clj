@@ -287,24 +287,19 @@
           :last  "Argento"
           :genre :giallo})
 
-  (unifier ['?first '?last]
-           '{?first "Dario", ?last ?first})
+  ;;=> {?first "Dario", ?last "Argento"}
 
+  (unifier ['?first "Argento"]
+           ["Dario" '?last])
 
-  (subst '[1 2 ?x ?y]
-         '{?x [3 4 ?x 6]})
-
-  (unify '{:first ?nickname
-           :last  ?last
-           :genre :giallo}
-
-         '{:last  "Argento"
-           :genre :giallo})
-
+  ;;=> ["Dario" "Argento"]
+  
 
   (subst '[1 2 ?x ?y]
          '{?x [3 4 ?y 6]})
-  
+
+  ;;=> [1 2 [3 4 ?y 6] ?y]
+
 
   (unifier '[(?a * ?x | 2) + (?b * ?x) + ?c]
            '[?z + (4 * 5) + 3])
