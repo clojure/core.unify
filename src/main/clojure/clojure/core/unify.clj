@@ -255,14 +255,15 @@
           (.replace root "")
           (.split "/")
           seq
-          (unify- tmpl))))
+          (unify tmpl))))
 
   (def match (make-matcher "http://foo.com/foo/"))
 
-  (match T {:url "http://foo.com/foo/1/2"})
-  ;;=> {?a 1, ?b 2}
+  (match T {:url "http://foo.com/foo/fee/fi"})
+  ;;=> {?a "fee", ?b "fi"}
 
-  (match T {:url "http://foo.com/foo/1"})
+  (match T {:url "http://foo.com/foo/flub"})
+  ;;=> {?a "flub"}
   
   (defn make-genr
     [root]
