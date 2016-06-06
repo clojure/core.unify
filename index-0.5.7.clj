@@ -2,8 +2,7 @@
  ({:doc "A unification library for Clojure.",
    :author "Michael Fogus",
    :name "clojure.core.unify",
-   :wiki-url
-   "http://clojure.github.com/core.unify/clojure.core.unify-api.html",
+   :wiki-url "http://clojure.github.io/core.unify/index.html",
    :source-url
    "https://github.com/clojure/core.unify/blob/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj"}),
  :vars
@@ -20,7 +19,7 @@
    "Takes a datastructure and returns a distinct set of the logical\nvariables found within.",
    :namespace "clojure.core.unify",
    :wiki-url
-   "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/extract-lvars"}
+   "http://clojure.github.io/core.unify//index.html#clojure.core.unify/extract-lvars"}
   {:raw-source-url
    "https://github.com/clojure/core.unify/raw/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj",
    :name "flatten-bindings",
@@ -34,7 +33,7 @@
    "Flattens recursive bindings in the given map to the same ground (if possible).",
    :namespace "clojure.core.unify",
    :wiki-url
-   "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/flatten-bindings"}
+   "http://clojure.github.io/core.unify//index.html#clojure.core.unify/flatten-bindings"}
   {:raw-source-url
    "https://github.com/clojure/core.unify/raw/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj",
    :name "make-occurs-subst-fn",
@@ -48,7 +47,7 @@
    "Given a function to recognize unification variables, returns a function that\nwill attempt to substitute unification bindings between two expressions.\nThis function uses an 'occurs check' methodology for detecting cycles.",
    :namespace "clojure.core.unify",
    :wiki-url
-   "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/make-occurs-subst-fn"}
+   "http://clojure.github.io/core.unify//index.html#clojure.core.unify/make-occurs-subst-fn"}
   {:raw-source-url
    "https://github.com/clojure/core.unify/raw/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj",
    :name "make-occurs-unifier-fn",
@@ -62,7 +61,7 @@
    "Given a function to recognize unification variables, returns a function to\nperform the unification of two expressions. This function uses an 'occurs check'\nmethodology for detecting cycles.",
    :namespace "clojure.core.unify",
    :wiki-url
-   "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/make-occurs-unifier-fn"}
+   "http://clojure.github.io/core.unify//index.html#clojure.core.unify/make-occurs-unifier-fn"}
   {:raw-source-url
    "https://github.com/clojure/core.unify/raw/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj",
    :name "make-occurs-unify-fn",
@@ -76,7 +75,7 @@
    "Given a function to recognize unification variables, returns a function to\nreturn a bindings map for two expressions.  This function uses an 'occurs check'\nmethodology for detecting cycles.",
    :namespace "clojure.core.unify",
    :wiki-url
-   "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/make-occurs-unify-fn"}
+   "http://clojure.github.io/core.unify//index.html#clojure.core.unify/make-occurs-unify-fn"}
   {:raw-source-url
    "https://github.com/clojure/core.unify/raw/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj",
    :name "make-subst-fn",
@@ -90,7 +89,7 @@
    "Given a function to recognize unification variables, returns a function that\nwill attempt to substitute unification bindings between two expressions.",
    :namespace "clojure.core.unify",
    :wiki-url
-   "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/make-subst-fn"}
+   "http://clojure.github.io/core.unify//index.html#clojure.core.unify/make-subst-fn"}
   {:raw-source-url
    "https://github.com/clojure/core.unify/raw/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj",
    :name "make-unifier-fn",
@@ -104,7 +103,7 @@
    "Given a function to recognize unification variables, returns a function to\nperform the unification of two expressions.",
    :namespace "clojure.core.unify",
    :wiki-url
-   "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/make-unifier-fn"}
+   "http://clojure.github.io/core.unify//index.html#clojure.core.unify/make-unifier-fn"}
   {:raw-source-url
    "https://github.com/clojure/core.unify/raw/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj",
    :name "make-unify-fn",
@@ -118,7 +117,7 @@
    "Given a function to recognize unification variables, returns a function to\nreturn a bindings map for two expressions.",
    :namespace "clojure.core.unify",
    :wiki-url
-   "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/make-unify-fn"}
+   "http://clojure.github.io/core.unify//index.html#clojure.core.unify/make-unify-fn"}
   {:raw-source-url
    "https://github.com/clojure/core.unify/raw/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj",
    :name "subst",
@@ -132,7 +131,7 @@
    "Attempts to substitute the bindings in the appropriate locations in the given expression.",
    :namespace "clojure.core.unify",
    :wiki-url
-   "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/subst"}
+   "http://clojure.github.io/core.unify//index.html#clojure.core.unify/subst"}
   {:raw-source-url
    "https://github.com/clojure/core.unify/raw/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj",
    :name "unifier",
@@ -146,7 +145,7 @@
    "Attempts the entire unification process from garnering the bindings to substituting\nthe appropriate bindings.  Note: This function is implemented with an occurs-check.",
    :namespace "clojure.core.unify",
    :wiki-url
-   "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/unifier"}
+   "http://clojure.github.io/core.unify//index.html#clojure.core.unify/unifier"}
   {:raw-source-url
    "https://github.com/clojure/core.unify/raw/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj",
    :name "unifier-",
@@ -160,7 +159,7 @@
    "Attempts the entire unification process from garnering the bindings to substituting\nthe appropriate bindings.  Note: This function is implemented **without** an occurs-check.",
    :namespace "clojure.core.unify",
    :wiki-url
-   "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/unifier-"}
+   "http://clojure.github.io/core.unify//index.html#clojure.core.unify/unifier-"}
   {:raw-source-url
    "https://github.com/clojure/core.unify/raw/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj",
    :name "unify",
@@ -174,7 +173,7 @@
    "Attempt to unify x and y with the given bindings (if any). Potentially returns a map of the \nunifiers (bindings) found.  Will throw an `IllegalStateException` if the expressions\ncontain a cycle relationship.  Will also throw an `IllegalArgumentException` if the\nsub-expressions clash.  Note: This function is implemented with an occurs-check.",
    :namespace "clojure.core.unify",
    :wiki-url
-   "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/unify"}
+   "http://clojure.github.io/core.unify//index.html#clojure.core.unify/unify"}
   {:raw-source-url
    "https://github.com/clojure/core.unify/raw/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj",
    :name "unify-",
@@ -188,4 +187,4 @@
    "Attempt to unify x and y with the given bindings (if any). Potentially returns a map of the \nunifiers (bindings) found.  Will throw an `IllegalStateException` if the expressions\ncontain a cycle relationship.  Will also throw an `IllegalArgumentException` if the\nsub-expressions clash.  Note: This function is implemented **without** an occurs-check.",
    :namespace "clojure.core.unify",
    :wiki-url
-   "http://clojure.github.com/core.unify//clojure.core.unify-api.html#clojure.core.unify/unify-"})}
+   "http://clojure.github.io/core.unify//index.html#clojure.core.unify/unify-"})}

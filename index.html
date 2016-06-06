@@ -93,6 +93,9 @@ namespace.
       <a href="#clojure.core.unify/unify-" class="toc-entry-anchor">unify-</a>
       
     </div>
+  </div><div class="toc-section" style="margin-left: 1em;">
+    <a style="margin-top: 3px;" href="#"></a>
+    
   </div>
 </div>
 </div>
@@ -124,6 +127,7 @@ namespace.
 </pre>
     <pre id="var-docstr">Takes a datastructure and returns a distinct set of the logical
 variables found within.</pre>
+    <pre id="var-specs"></pre>
     
     
     <a id="var-source" href="https://github.com/clojure/core.unify/blob/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj#L22">Source</a>
@@ -136,6 +140,7 @@ variables found within.</pre>
        (flatten-bindings variable? binds)
 </pre>
     <pre id="var-docstr">Flattens recursive bindings in the given map to the same ground (if possible).</pre>
+    <pre id="var-specs"></pre>
     
     
     <a id="var-source" href="https://github.com/clojure/core.unify/blob/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj#L131">Source</a>
@@ -149,6 +154,7 @@ variables found within.</pre>
     <pre id="var-docstr">Given a function to recognize unification variables, returns a function that
 will attempt to substitute unification bindings between two expressions.
 This function uses an 'occurs check' methodology for detecting cycles.</pre>
+    <pre id="var-specs"></pre>
     
     
     <a id="var-source" href="https://github.com/clojure/core.unify/blob/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj#L178">Source</a>
@@ -162,6 +168,7 @@ This function uses an 'occurs check' methodology for detecting cycles.</pre>
     <pre id="var-docstr">Given a function to recognize unification variables, returns a function to
 perform the unification of two expressions. This function uses an 'occurs check'
 methodology for detecting cycles.</pre>
+    <pre id="var-specs"></pre>
     
     
     <a id="var-source" href="https://github.com/clojure/core.unify/blob/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj#L185">Source</a>
@@ -175,6 +182,7 @@ methodology for detecting cycles.</pre>
     <pre id="var-docstr">Given a function to recognize unification variables, returns a function to
 return a bindings map for two expressions.  This function uses an 'occurs check'
 methodology for detecting cycles.</pre>
+    <pre id="var-specs"></pre>
     
     
     <a id="var-source" href="https://github.com/clojure/core.unify/blob/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj#L169">Source</a>
@@ -187,6 +195,7 @@ methodology for detecting cycles.</pre>
 </pre>
     <pre id="var-docstr">Given a function to recognize unification variables, returns a function that
 will attempt to substitute unification bindings between two expressions.</pre>
+    <pre id="var-specs"></pre>
     
     
     <a id="var-source" href="https://github.com/clojure/core.unify/blob/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj#L217">Source</a>
@@ -199,6 +208,7 @@ will attempt to substitute unification bindings between two expressions.</pre>
 </pre>
     <pre id="var-docstr">Given a function to recognize unification variables, returns a function to
 perform the unification of two expressions.</pre>
+    <pre id="var-specs"></pre>
     
     
     <a id="var-source" href="https://github.com/clojure/core.unify/blob/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj#L223">Source</a>
@@ -211,6 +221,7 @@ perform the unification of two expressions.</pre>
 </pre>
     <pre id="var-docstr">Given a function to recognize unification variables, returns a function to
 return a bindings map for two expressions.</pre>
+    <pre id="var-specs"></pre>
     
     
     <a id="var-source" href="https://github.com/clojure/core.unify/blob/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj#L209">Source</a>
@@ -222,6 +233,7 @@ return a bindings map for two expressions.</pre>
     <pre id="var-usage">Usage: (subst expression bindings)
 </pre>
     <pre id="var-docstr">Attempts to substitute the bindings in the appropriate locations in the given expression.</pre>
+    <pre id="var-specs"></pre>
     
     
     <a id="var-source" href="https://github.com/clojure/core.unify/blob/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj#L198">Source</a>
@@ -234,6 +246,7 @@ return a bindings map for two expressions.</pre>
 </pre>
     <pre id="var-docstr">Attempts the entire unification process from garnering the bindings to substituting
 the appropriate bindings.  Note: This function is implemented with an occurs-check.</pre>
+    <pre id="var-specs"></pre>
     
     
     <a id="var-source" href="https://github.com/clojure/core.unify/blob/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj#L202">Source</a>
@@ -246,6 +259,7 @@ the appropriate bindings.  Note: This function is implemented with an occurs-che
 </pre>
     <pre id="var-docstr">Attempts the entire unification process from garnering the bindings to substituting
 the appropriate bindings.  Note: This function is implemented **without** an occurs-check.</pre>
+    <pre id="var-specs"></pre>
     
     
     <a id="var-source" href="https://github.com/clojure/core.unify/blob/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj#L240">Source</a>
@@ -260,6 +274,7 @@ the appropriate bindings.  Note: This function is implemented **without** an occ
 unifiers (bindings) found.  Will throw an `IllegalStateException` if the expressions
 contain a cycle relationship.  Will also throw an `IllegalArgumentException` if the
 sub-expressions clash.  Note: This function is implemented with an occurs-check.</pre>
+    <pre id="var-specs"></pre>
     
     
     <a id="var-source" href="https://github.com/clojure/core.unify/blob/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj#L193">Source</a>
@@ -274,6 +289,7 @@ sub-expressions clash.  Note: This function is implemented with an occurs-check.
 unifiers (bindings) found.  Will throw an `IllegalStateException` if the expressions
 contain a cycle relationship.  Will also throw an `IllegalArgumentException` if the
 sub-expressions clash.  Note: This function is implemented **without** an occurs-check.</pre>
+    <pre id="var-specs"></pre>
     
     
     <a id="var-source" href="https://github.com/clojure/core.unify/blob/264e3fb7f533b038a81facd90b30557ecbcf3aca/src/main/clojure/clojure/core/unify.clj#L234">Source</a>
