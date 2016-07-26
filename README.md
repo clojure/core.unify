@@ -19,7 +19,7 @@ core.unify provides a la carte unification facilities that are not deeply tied i
 Releases and Dependency Information
 ========================================
 
-Latest stable release: 0.5.5
+Latest stable release: 0.5.7
 
 * [All Released Versions](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.clojure%22%20AND%20a%3A%22core.unify%22)
 
@@ -27,14 +27,14 @@ Latest stable release: 0.5.5
 
 [Leiningen](https://github.com/technomancy/leiningen) dependency information:
 
-    [org.clojure/core.unify "0.5.5"]
+    [org.clojure/core.unify "0.5.7"]
 
 [Maven](http://maven.apache.org/) dependency information:
 
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>core.unify</artifactId>
-      <version>0.5.3</version>
+      <version>0.5.7</version>
     </dependency>
 
 
@@ -70,6 +70,10 @@ Developer Information
 Change Log
 ====================
 
+* Release 0.5.7 on 2016.07.25
+  - Fixed macro that produced invalid fn names
+* Release 0.5.6 on 2013.03.07
+  - Removed nil bindings 
 * Release 0.5.5 on 2013.01.25
   - Exposed `lvar?` function
   - Added `extract-lvars` function
