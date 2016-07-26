@@ -81,7 +81,7 @@
         v     (gensym)
         expr  (gensym)
         binds (gensym)]
-    `(fn var-unify
+    `(fn ~'var-unify
        [~varp ~v ~expr ~binds]
        (if-let [vb# (~binds ~v)] 
          (garner-unifiers ~varp vb# ~expr ~binds)
