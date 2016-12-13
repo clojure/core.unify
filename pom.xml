@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>core.unify</artifactId>
   <version>0.5.8-SNAPSHOT</version>
-  <name>${artifactId}</name>
+  <name>core.unify</name>
   <description>A unification library for Clojure</description>
   <packaging>jar</packaging>
 
@@ -18,7 +18,7 @@
   <parent>
     <groupId>org.clojure</groupId>
     <artifactId>pom.contrib</artifactId>
-    <version>0.1.2</version>
+    <version>0.2.0</version>
   </parent>
 
   <developers>
