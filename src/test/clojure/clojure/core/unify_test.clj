@@ -8,9 +8,11 @@
 
 (ns ^{:doc "A unification library for Clojure."
       :author "Michael Fogus"}
-  clojure.core.unify.tests
+  clojure.core.unify-test
   (:use [clojure.core.unify] :reload-all)
   (:use [clojure.test]))
+
+(println "\nTesting with Clojure" (clojure-version))
 
 (def CAPS #(and (symbol? %) (Character/isUpperCase (first (name %)))))
 
