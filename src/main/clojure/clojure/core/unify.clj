@@ -147,7 +147,9 @@
   {:pre [(map? binds) (fn? variable?)]}
   (walk/prewalk (fn [expr] 
                   (if (variable? expr)
-                    (or (binds expr) expr) 
+                    (if-let [bind (find binds expr)]
+                      (val bind)
+                      expr)
                     expr)) 
                 x))
 

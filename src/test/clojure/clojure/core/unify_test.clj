@@ -79,6 +79,10 @@
                                                              (re-matches #"^\?.*" (name %))))]
     (is (= '((?a * 5 ** 2) + (4 * 5) + 3)  (u '((?a * ?x ** 2) + (?b * ?x) + ?c) '(?z + (4 * 5) + 3))))))
 
+(deftest test-subs
+  (is (= [true false]
+         (clojure.core.unify/subst '[?a ?b] {'?a true '?b false}))))
+
 (deftest test-aux
   (is (#'clojure.core.unify/composite? "foo")))
 
