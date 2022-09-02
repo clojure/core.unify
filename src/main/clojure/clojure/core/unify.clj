@@ -56,7 +56,6 @@
         (and (variable? current)
              (find binds current))
         (recur (zip/next (zip/insert-right z (binds current))))
-        (zip/end? z) false
         :else (recur (zip/next z))))))
 
 
