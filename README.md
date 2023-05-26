@@ -64,12 +64,8 @@ Developer Information
 ========================================
 
 * [GitHub project](https://github.com/clojure/core.unify)
-
-* [Bug Tracker](http://dev.clojure.org/jira/browse/UNIFY)
-
-* [Continuous Integration](http://build.clojure.org/job/core.unify/)
-
-* [Compatibility Test Matrix](http://build.clojure.org/job/core.unify-test-matrix/)
+* [Bug Tracker](https://clojure.atlassian.net/browse/UNIFY)
+* [Continuous Integration](https://github.com/clojure/core.unify/actions/workflows/test.yml)
 
 
 Change Log
@@ -98,4 +94,4 @@ Change Log
 Copyright and License
 ========================================
 
-Copyright (c) Rich Hickey and Michael Fogus, 2012. All rights reserved.  The use and distribution terms for this software are covered by the Eclipse Public License 1.0 (http://opensource.org/licenses/eclipse-1.0.php) which can be found in the file epl-v10.html at the root of this distribution. By using this software in any fashion, you are agreeing to be bound bythe terms of this license.  You must not remove this notice, or any other, from this software.
+Copyright (c) Rich Hickey and Michael Fogus, 2023. All rights reserved.  The use and distribution terms for this software are covered by the Eclipse Public License 1.0 (http://opensource.org/licenses/eclipse-1.0.php) which can be found in the file epl-v10.html at the root of this distribution. By using this software in any fashion, you are agreeing to be bound bythe terms of this license.  You must not remove this notice, or any other, from this software.
