@@ -7,9 +7,9 @@ core.unify is a Clojure contrib library providing the following features:
 
 * Packaged functions for unification binding, subst, and unification functions, with or without occurs checking, recognizing variables tagged as symbols prefixed with `?` characters
 
-core.unify is based on a library named Unifycle, found at http://github.com/fogus/unifycle that has been deprecated.
+core.unify is based on a library named Unifycle, found at https://github.com/fogus/unifycle that has been deprecated.
 
-*[more information](http://fogus.me/fun/unifycle)*
+*[more information](https://fogus.me/fun/unifycle)*
 
 Differences from core.logic
 ===========================
@@ -19,27 +19,26 @@ core.unify provides a la carte unification facilities that are not deeply tied i
 Releases and Dependency Information
 ========================================
 
-Latest stable release: 0.5.7
+Latest stable release: 0.6.0
 
-* [All Released Versions](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.clojure%22%20AND%20a%3A%22core.unify%22)
-
+* [All Released Versions](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.clojure%22%20AND%20a%3A%22core.unify%22)
 * [Development Snapshot Versions](https://oss.sonatype.org/index.html#nexus-search;gav~org.clojure~core.unify~~~)
 
 [CLI/`deps.edn`](https://clojure.org/reference/deps_and_cli) dependency information:
 ```clojure
-org.clojure/core.unify {:mvn/version "0.5.7"}
+org.clojure/core.unify {:mvn/version "0.6.0"}
 ```
 
 [Leiningen](https://github.com/technomancy/leiningen) dependency information:
 
-    [org.clojure/core.unify "0.5.7"]
+    [org.clojure/core.unify "0.6.0"]
 
-[Maven](http://maven.apache.org/) dependency information:
+[Maven](https://maven.apache.org/) dependency information:
 
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>core.unify</artifactId>
-      <version>0.5.7</version>
+      <version>0.6.0</version>
     </dependency>
 
 
@@ -71,6 +70,8 @@ Developer Information
 Change Log
 ====================
 
+* Release 0.6.0 on 2024.02.19
+  - Update parent pom version
 * Release 0.5.7 on 2016.07.25
   - Fixed macro that produced invalid fn names
 * Release 0.5.6 on 2013.03.07
@@ -94,4 +95,4 @@ Change Log
 Copyright and License
 ========================================
 
-Copyright (c) Rich Hickey and Michael Fogus, 2023. All rights reserved.  The use and distribution terms for this software are covered by the Eclipse Public License 1.0 (http://opensource.org/licenses/eclipse-1.0.php) which can be found in the file epl-v10.html at the root of this distribution. By using this software in any fashion, you are agreeing to be bound bythe terms of this license.  You must not remove this notice, or any other, from this software.
+Copyright (c) Rich Hickey and Michael Fogus. All rights reserved.  The use and distribution terms for this software are covered by the Eclipse Public License 1.0 (https://opensource.org/license/epl-1-0/) which can be found in the file epl-v10.html at the root of this distribution. By using this software in any fashion, you are agreeing to be bound bythe terms of this license.  You must not remove this notice, or any other, from this software.
