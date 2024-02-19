@@ -10,7 +10,7 @@
   <licenses>
     <license>
       <name>Eclipse Public License 1.0</name>
-      <url>http://opensource.org/licenses/eclipse-1.0.php</url>
+      <url>https://opensource.org/license/epl-1-0/</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
@@ -18,20 +18,20 @@
   <parent>
     <groupId>org.clojure</groupId>
     <artifactId>pom.contrib</artifactId>
-    <version>0.2.2</version>
+    <version>1.2.0</version>
   </parent>
 
   <developers>
     <developer>
       <id>fogus</id>
       <name>Fogus</name>
-      <url>http://fogus.me</url>
+      <url>https://fogus.me</url>
     </developer>
   </developers>
 
   <scm>
     <connection>scm:git:git://github.com/clojure/core.unify.git</connection>
-    <url>http://github.com/clojure/core.unify</url>
+    <url>https://github.com/clojure/core.unify</url>
     <tag>HEAD</tag>
   </scm>
 
