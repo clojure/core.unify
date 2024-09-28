@@ -9,6 +9,7 @@
 (ns ^{:doc "A unification library for Clojure."
       :author "Michael Fogus"}
   clojure.core.unify
+  #?(:cljs (:require-macros [clojure.core.unify :refer [create-var-unification-fn]]))
   (:require [clojure.zip :as zip]
             [clojure.walk :as walk]))
 
@@ -36,12 +37,13 @@
    predicate.  At the moment, the only meaning of `composite?` is:
    Returns true if `(seq x)` will succeed, false otherwise." 
   [x]
-  (or (coll? x)
-      (nil? x) 
-      (instance? Iterable x)
-      (-> x class .isArray)
-      (string? x)
-      (instance? java.util.Map x)))
+  #?(:clj (or (coll? x)
+              (nil? x)
+              (instance? Iterable x)
+              (-> x class .isArray)
+              (string? x)
+              (instance? java.util.Map x))
+     :cljs (seqable? x)))
 
 (declare garner-unifiers)
 
@@ -58,7 +60,6 @@
         (recur (zip/next (zip/insert-right z (binds current))))
         :else (recur (zip/next z))))))
 
-
 (defn- bind-phase
   [binds variable expr]
   (if (or (nil? expr)
@@ -70,24 +71,25 @@
   [want-occurs? variable? v expr binds]
   (if want-occurs?
     `(if (occurs? ~variable? ~v ~expr ~binds)
-       (throw (IllegalStateException. (str "Cycle found in the path " ~expr)))
+       #?(:clj  (throw (IllegalStateException. (str "Cycle found in the path " ~expr)))
+          :cljs (throw (js/Error. (str "Cycle found in the path " ~expr))))
        (bind-phase ~binds ~v ~expr))
     `(bind-phase ~binds ~v ~expr)))
 
-(defmacro create-var-unification-fn
-  [want-occurs?]
-  (let [varp  (gensym)
-        v     (gensym)
-        expr  (gensym)
-        binds (gensym)]
-    `(fn ~'var-unify
-       [~varp ~v ~expr ~binds]
-       (if-let [vb# (~binds ~v)] 
-         (garner-unifiers ~varp vb# ~expr ~binds)
-         (if-let [vexpr# (and (~varp ~expr) (~binds ~expr))]
-           (garner-unifiers ~varp ~v vexpr# ~binds)
-           ~(determine-occursness want-occurs? varp v expr binds))))))
-
+#?(:clj
+   (defmacro create-var-unification-fn
+     [want-occurs?]
+     (let [varp  (gensym)
+           v     (gensym)
+           expr  (gensym)
+           binds (gensym)]
+       `(fn ~'var-unify
+          [~varp ~v ~expr ~binds]
+          (if-let [vb# (~binds ~v)]
+            (garner-unifiers ~varp vb# ~expr ~binds)
+            (if-let [vexpr# (and (~varp ~expr) (~binds ~expr))]
+              (garner-unifiers ~varp ~v vexpr# ~binds)
+              ~(determine-occursness want-occurs? varp v expr binds)))))))
 
 (def ^{:doc "Unify the variable v with expr.  Uses the bindings supplied and possibly returns an extended bindings map."
        :private true}
@@ -102,10 +104,6 @@
        (#{'&} (first form))))
 
 (defn- garner-unifiers
-  "Attempt to unify x and y with the given bindings (if any). Potentially returns a map of the 
-   unifiers (bindings) found.  Will throw an `IllegalStateException` if the expressions
-   contain a cycle relationship.  Will also throw an `IllegalArgumentException` if the
-   sub-expressions clash."
   ([x y]                 (garner-unifiers unify-variable lvar? x y {}))
   ([variable? x y]       (garner-unifiers unify-variable variable? x y {}))
   ([variable? x y binds] (garner-unifiers unify-variable variable? x y binds))
@@ -141,7 +139,6 @@
                         binds)))))
 
 (defn- try-subst
-  "Attempts to substitute the bindings in the appropriate locations in the given expression."
   [variable? x binds]
   {:pre [(map? binds) (fn? variable?)]}
   (walk/prewalk (fn [expr] 
@@ -153,8 +150,6 @@
                 x))
 
 (defn- unifier*
-  "Attempts the entire unification process from garnering the bindings to substituting
-   the appropriate bindings."
   ([x y] (unifier* lvar? x y))
   ([variable? x y]
      (unifier* variable? x y (garner-unifiers variable? x y)))
@@ -191,17 +186,19 @@
   (partial unifier* variable-fn))
 
 
-(def ^{:doc      (str (:doc (meta #'garner-unifiers))
-                      "  Note: This function is implemented with an occurs-check.")
+(def ^{:doc     "Attempt to unify x and y with the given bindings (if any). Potentially returns a map of the
+   unifiers (bindings) found.  Will throw an `IllegalStateException` if the expressions
+   contain a cycle relationship.  Will also throw an `IllegalArgumentException` if the
+   sub-expressions clash. Note: This function is implemented with an occurs-check."
        :arglists '([expression1 expression2])}
   unify   (make-occurs-unify-fn lvar?))
 
-(def ^{:doc      (:doc (meta #'try-subst))
+(def ^{:doc      "Attempts to substitute the bindings in the appropriate locations in the given expression."
        :arglists '([expression bindings])}
   subst   (make-occurs-subst-fn lvar?))
 
-(def ^{:doc      (str (:doc (meta #'unifier*))
-                      "  Note: This function is implemented with an occurs-check.")
+(def ^{:doc      "Attempts the entire unification process from garnering the bindings to substituting
+     the appropriate bindings. Note: This function is implemented with an occurs-check."
        :arglists '([expression1 expression2])}
   unifier (make-occurs-unifier-fn lvar?))
 
@@ -232,14 +229,16 @@
               (garner-unifiers unify-variable- variable-fn x y {}))))
 
 
-(def ^{:doc      (str (:doc (meta #'garner-unifiers))
-                      "  Note: This function is implemented **without** an occurs-check.")
+(def ^{:doc      "Attempt to unify x and y with the given bindings (if any). Potentially returns a map of the
+   unifiers (bindings) found.  Will throw an `IllegalStateException` if the expressions
+   contain a cycle relationship.  Will also throw an `IllegalArgumentException` if the
+   sub-expressions clash. Note: This function is implemented **without** an occurs-check."
        :arglists '([expression1 expression2])}
   unify-   (make-unify-fn lvar?))
 
 
-(def ^{:doc      (str (:doc (meta #'unifier*))
-                      "  Note: This function is implemented **without** an occurs-check.")
+(def ^{:doc      "Attempts the entire unification process from garnering the bindings to substituting
+     the appropriate bindings. Note: This function is implemented **without** an occurs-check."
        :arglists '([expression1 expression2])}
   unifier- (make-unifier-fn lvar?))
 
