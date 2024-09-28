@@ -1,7 +1,7 @@
 clojure.core.unify
 ========================================
 
-core.unify is a Clojure contrib library providing the following features:
+core.unify is a Clojure & ClojureScript contrib library providing the following features:
 
 * Factory functions for constructing unification binding, subst, and unification functions, with or without occurs checking
 

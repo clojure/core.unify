@@ -9,12 +9,19 @@
 (ns ^{:doc "A unification library for Clojure."
       :author "Michael Fogus"}
   clojure.core.unify-test
-  (:use [clojure.core.unify] :reload-all)
-  (:use [clojure.test]))
+  (:require [clojure.core.unify :refer [unify]]
+            [clojure.test :refer [deftest is testing]]))
 
-(println "\nTesting with Clojure" (clojure-version))
+#?(:clj  (println "\nTesting with Clojure" (clojure-version))
+   :cljs (println "\nTesting with ClojureScript" *clojurescript-version*))
 
-(def CAPS #(and (symbol? %) (Character/isUpperCase (first (name %)))))
+#?(:cljs
+   (defn uppercase? [s]
+     (let [c (.charCodeAt s 0)]
+       (and (>= c 65)
+            (<= c 90)))))
+
+(def CAPS #(and (symbol? %) (#?(:clj Character/isUpperCase :cljs uppercase?) (first (name %)))))
 
 (deftest test-garner-unifiers
   (is (= {}                                (#'clojure.core.unify/garner-unifiers '(a b)            '(a b))))
@@ -32,8 +39,10 @@
   (is (nil?                                (#'clojure.core.unify/garner-unifiers '(f ?a)           '(g 42))))        ; clash
   (is (nil?                                (#'clojure.core.unify/garner-unifiers '(?a ?a)          'a)))             ; clash
   (is (= '{?y (h), ?x (h)}                 (#'clojure.core.unify/garner-unifiers '(f ?x (h))       '(f (h) ?y))))
-  (is (thrown? IllegalStateException       (#'clojure.core.unify/garner-unifiers '(f (g ?x) ?y)    '(f ?y ?x))))     ; cycle
-  (is (thrown? IllegalStateException       (#'clojure.core.unify/garner-unifiers '?x               '(f ?x))))        ; cycle
+  (is (thrown? #?(:clj IllegalStateException :cljs js/Error)
+                                           (#'clojure.core.unify/garner-unifiers '(f (g ?x) ?y)    '(f ?y ?x))))     ; cycle
+  (is (thrown? #?(:clj IllegalStateException :cljs js/Error)
+                                           (#'clojure.core.unify/garner-unifiers '?x               '(f ?x))))        ; cycle
   (is (= '{?y (g ?x)}                      (#'clojure.core.unify/garner-unifiers '(f (g ?x) ?y)    '(f ?y (g ?x)))))
   (is (= '{?z (g ?x), ?y (g ?x)}           (#'clojure.core.unify/garner-unifiers '(f (g ?x) ?y)    '(f ?y ?z))))
   (is (= '{?a a}                           (#'clojure.core.unify/garner-unifiers '?a               'a)))
@@ -75,7 +84,7 @@
   (is (= #{2 3 4}                          (#'clojure.core.unify/unifier- #{'?a '?b '?c} #{2 3 4}))))
 
 (deftest test-mk-unifier
-  (let [u (#'clojure.core.unify/make-occurs-unifier-fn #(and (symbol? %) 
+  (let [u (#'clojure.core.unify/make-occurs-unifier-fn #(and (symbol? %)
                                                              (re-matches #"^\?.*" (name %))))]
     (is (= '((?a * 5 ** 2) + (4 * 5) + 3)  (u '((?a * ?x ** 2) + (?b * ?x) + ?c) '(?z + (4 * 5) + 3))))))
 
