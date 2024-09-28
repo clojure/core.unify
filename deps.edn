@@ -14,4 +14,12 @@
                          {:git/url "https://github.com/cognitect-labs/test-runner"
                           :sha "f7ef16dc3b8332b0d77bc0274578ad5270fbfedd"}}
             :main-opts ["-m" "cognitect.test-runner"
-                        "-d" "src/test/clojure"]}}}
+                        "-d" "src/test/clojure"]}
+           :cljs
+           {:extra-deps {org.clojure/clojurescript {:mvn/version "1.11.132"}}
+            :main-opts ["-m" "cljs.main" "-re" "node" "-r"]}
+           :cljs-build
+           {:extra-paths ["src/test/cljs"]
+            :extra-deps {org.clojure/clojurescript {:mvn/version "1.11.132"}}
+            :main-opts ["-m" "cljs.main" "-v" "-O" "advanced" "-d" "target"
+                        "-o" "target/test.js" "-c" "clojure.core.unify-test-runner"]}}}
