@@ -1,6 +1,11 @@
-target
+.calva/repl.calva-repl
+.clj-kondo/.cache/
+.cpcache/
 .lein*
+.lsp/.cache/
+.nrepl-port
+.portal/vs-code.edn
+cljs-test-runner-out/
 lib
 multi-lib
-.cpcache/
 target
