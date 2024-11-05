@@ -2,19 +2,11 @@
  :aliases {:test
            {:extra-paths ["src/test/clojure"]
             :extra-deps {org.clojure/test.check {:mvn/version "1.1.1"}}}
-           :1.7 {:override-deps {org.clojure/clojure {:mvn/version "1.7.0"}}}
            :1.8 {:override-deps {org.clojure/clojure {:mvn/version "1.8.0"}}}
            :1.9 {:override-deps {org.clojure/clojure {:mvn/version "1.9.0"}}}
            :1.10 {:override-deps {org.clojure/clojure {:mvn/version "1.10.3"}}}
            :1.11 {:override-deps {org.clojure/clojure {:mvn/version "1.11.4"}}}
            :1.12 {:override-deps {org.clojure/clojure {:mvn/version "1.12.0"}}}
-           ;; purely to support Clojure 1.7 testing:
-           :runner-1.7
-           {:extra-deps {com.cognitect/test-runner
-                         {:git/url "https://github.com/cognitect-labs/test-runner"
-                          :sha "f7ef16dc3b8332b0d77bc0274578ad5270fbfedd"}}
-            :main-opts ["-m" "cognitect.test-runner"
-                        "-d" "src/test/clojure"]}
            ;; suitable for Clojure 1.8 or later:
            :runner
            {:extra-deps {io.github.cognitect-labs/test-runner
