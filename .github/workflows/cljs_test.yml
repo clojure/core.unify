@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
 
       - uses: DeLaGuardo/setup-clojure@12.5
         with:
@@ -37,10 +37,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-${{ env.cache-name }}-
 
-      - name: Build tests
-        run: clojure -M:test:cljs-build
-
       - name: Run tests
-        run: |
-          node target/test.js | tee test-out.txt
-          grep -qxF '0 failures, 0 errors.' test-out.txt
+        run: clojure -M:test:cljs-runner

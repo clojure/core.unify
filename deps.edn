@@ -16,12 +16,4 @@
            :cljs-runner
            {:extra-deps {olical/cljs-test-runner {:mvn/version "3.8.1"}}
             :main-opts ["-m" "cljs-test-runner.main"
-                        "-d" "src/test/clojure"]}
-           :cljs
-           {:extra-deps {org.clojure/clojurescript {:mvn/version "1.11.132"}}
-            :main-opts ["-m" "cljs.main" "-re" "node" "-r"]}
-           :cljs-build
-           {:extra-paths ["src/test/cljs"]
-            :extra-deps {org.clojure/clojurescript {:mvn/version "1.11.132"}}
-            :main-opts ["-m" "cljs.main" "-v" "-O" "advanced" "-d" "target"
-                        "-o" "target/test.js" "-c" "clojure.core.unify-test-runner"]}}}
+                        "-d" "src/test/clojure"]}}}
