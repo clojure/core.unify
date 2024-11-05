@@ -49,10 +49,10 @@ Example Usage
 ```clojure
     (use 'clojure.core.unify)
 
-    (unifier '((?a * ?x ** 2) + (?b * ?x) + ?c) 
+    (unifier '((?a * ?x ** 2) + (?b * ?x) + ?c)
          '(?z + (4 * 5) + 3))
 
-    ;=> ((?a * 5 ** 2) + (4 * 5) + 3)	
+    ;=> ((?a * 5 ** 2) + (4 * 5) + 3)
 ```
 
 Refer to docstrings in the `clojure.core.unify` namespace.
@@ -70,18 +70,21 @@ Developer Information
 Change Log
 ====================
 
+* Release 0.7.0 in progress
+  - Add ClojureScript support
+  - Drop Clojure 1.6 and 1.7 support
 * Release 0.6.0 on 2024.02.19
   - Update parent pom version
 * Release 0.5.7 on 2016.07.25
   - Fixed macro that produced invalid fn names
 * Release 0.5.6 on 2013.03.07
-  - Removed nil bindings 
+  - Removed nil bindings
 * Release 0.5.5 on 2013.01.25
   - Exposed `lvar?` function
   - Added `extract-lvars` function
   - Exposed `flatten-bindings` function
 * Release 0.5.4 on 2013.01.24
-  - Added 3-arg version of `unify` and `unify-` allowing an 
+  - Added 3-arg version of `unify` and `unify-` allowing an
     additional environment map.
 * Release 0.5.3 on 2012.05.25
   - Added `variable?` function
