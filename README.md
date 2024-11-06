@@ -19,26 +19,26 @@ core.unify provides a la carte unification facilities that are not deeply tied i
 Releases and Dependency Information
 ========================================
 
-Latest stable release: 0.6.0
+Latest stable release: 0.7.0
 
 * [All Released Versions](https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.clojure%22%20AND%20a%3A%22core.unify%22)
 * [Development Snapshot Versions](https://oss.sonatype.org/index.html#nexus-search;gav~org.clojure~core.unify~~~)
 
 [CLI/`deps.edn`](https://clojure.org/reference/deps_and_cli) dependency information:
 ```clojure
-org.clojure/core.unify {:mvn/version "0.6.0"}
+org.clojure/core.unify {:mvn/version "0.7.0"}
 ```
 
 [Leiningen](https://github.com/technomancy/leiningen) dependency information:
 
-    [org.clojure/core.unify "0.6.0"]
+    [org.clojure/core.unify "0.7.0"]
 
 [Maven](https://maven.apache.org/) dependency information:
 
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>core.unify</artifactId>
-      <version>0.6.0</version>
+      <version>0.7.0</version>
     </dependency>
 
 
@@ -70,7 +70,7 @@ Developer Information
 Change Log
 ====================
 
-* Release 0.7.0 in progress
+* Release 0.7.0 on 2024.11.06
   - Add ClojureScript support
   - Drop Clojure 1.6 and 1.7 support
 * Release 0.6.0 on 2024.02.19
