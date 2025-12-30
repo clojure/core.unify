@@ -1,4 +1,8 @@
 name: ClojureScript Test
+
+permissions:
+  contents: read
+
 on: [push]
 
 jobs:
