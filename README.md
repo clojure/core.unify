@@ -70,6 +70,8 @@ Developer Information
 Change Log
 ====================
 
+* Release 0.7.2 on 2026-05-14
+  - Fixed flatten-bindings to keep unresolved lvars and also bindings to nil
 * Release 0.7.1 on 2025-12-30
   - Update parent pom version
 * Release 0.7.0 on 2024.11.06
