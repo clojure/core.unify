@@ -126,17 +126,17 @@
                                                                   binds)))))
 
 (defn flatten-bindings
-  "Flattens recursive bindings in the given map to the same ground (if possible)."
+  "Flattens recursive bindings in binds to the same ground, if possible.
+  If a variable cannot be resolved then it is left in place."
   ([binds] (flatten-bindings lvar? binds))
   ([variable? binds]
-     (into {}
-           (remove (comp nil? second)
-                   (map (fn [[k v]]
-                          [k (loop [v v]
-                               (if (variable? v)
-                                 (recur (binds v))
-                                 v))])
-                        binds)))))
+   (into {}
+         (map (fn [[k v]]
+                [k (loop [v v]
+                     (if-let [entry (and (variable? v) (find binds v))]
+                       (recur (val entry))
+                       v))])
+              binds))))
 
 (defn- try-subst
   [variable? x binds]

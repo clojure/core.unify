@@ -9,7 +9,7 @@
 (ns ^{:doc "A unification library for Clojure."
       :author "Michael Fogus"}
   clojure.core.unify-test
-  (:require [clojure.core.unify :refer [unify]]
+  (:require [clojure.core.unify :refer [unify] :as u]
             [clojure.test :refer [deftest is testing]]))
 
 #?(:clj  (println "\nTesting with Clojure" (clojure-version))
@@ -63,7 +63,9 @@
   (is (= '{?y (2 3)}                       (#'clojure.core.unify/garner-unifiers '(_ & ?y) [1 2 3]))))
 
 (deftest test-flatten-bindings
-  (is (= '{?y a, ?x a}                     (#'clojure.core.unify/flatten-bindings '{?y a, ?x ?y}))))
+  (is (= '{?y a, ?x a}                     (u/flatten-bindings '{?y a, ?x ?y})))
+  (is (= '{?z a, ?x ?y}                    (u/flatten-bindings '{?x ?y, ?z a})))
+  (is (= {'?x nil}                         (u/flatten-bindings '{?x nil}))))
 
 
 (deftest test-unifier*
